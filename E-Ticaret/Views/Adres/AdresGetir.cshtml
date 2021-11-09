@@ -1,0 +1,63 @@
+﻿@model E_Ticaret.Models.Entity.TBL_MARKA
+
+@{
+    ViewBag.Title = "AdresGetir";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+
+<h2>
+    ADRES EKLE
+</h2>
+<br />
+
+
+<div style="margin:20px">
+    @using (Html.BeginForm("AdresEkle", "Adres", FormMethod.Post))
+    {
+
+        <div class="form-group first">
+            <label for="name"><b>BAŞLIK</b></label>
+            <input type="text" class="form-control" name="BASLIK" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>İL</b></label>
+            <input type="text" class="form-control" name="IL" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>ILCE</b></label>
+            <input type="text" class="form-control" name="ILCE" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>ADRES</b></label>
+            <input type="text" class="form-control" name="ADRES" required>
+
+        </div>
+
+        <div>
+            <input type="hidden" class="form-control" name="UYEID" value="@ViewBag.dgr14">
+
+        </div>
+
+        <br />
+
+        <button class="btn btn-dark">ADRES EKLE</button>
+
+    }
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+

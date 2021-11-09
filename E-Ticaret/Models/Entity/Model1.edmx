@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EticaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ADRES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UYEID" Type="int" />
+          <Property Name="BASLIK" Type="varchar" MaxLength="50" />
+          <Property Name="IL" Type="varchar" MaxLength="50" />
+          <Property Name="ILCE" Type="varchar" MaxLength="50" />
+          <Property Name="ADRES" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TBL_DESTEK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="KONU" Type="varchar" MaxLength="50" />
+          <Property Name="MESAJ" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_DURUM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DURUM" Type="int" />
+          <Property Name="ACIKLAMA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_FAVORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUNID" Type="int" />
+          <Property Name="UYEID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_KATEGORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_MARKA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="FOTOGRAF" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TBL_OZELLIK">
+          <Key>
+            <PropertyRef Name="OZELLIKID" />
+          </Key>
+          <Property Name="OZELLIKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OZELLIKAD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADSOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="SIFRE" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TBL_SATIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN" Type="int" />
+          <Property Name="UYE" Type="int" />
+          <Property Name="TARIH" Type="smalldatetime" />
+          <Property Name="SATISADET" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_SEPET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN" Type="int" />
+          <Property Name="UYE" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_SIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UYE" Type="int" />
+          <Property Name="TARIH" Type="date" />
+          <Property Name="TOPLAMTUTAR" Type="int" />
+          <Property Name="DURUM" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_SIPARISKALEMI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISID" Type="int" />
+          <Property Name="URUN" Type="int" />
+          <Property Name="ADET" Type="int" />
+          <Property Name="TUTAR" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_URUN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="30" />
+          <Property Name="MARKA" Type="int" />
+          <Property Name="KATEGORI" Type="int" />
+          <Property Name="STOK" Type="int" />
+          <Property Name="FIYAT" Type="int" />
+          <Property Name="DURUM" Type="bit" />
+          <Property Name="ACIKLAMA" Type="varchar" MaxLength="5000" />
+          <Property Name="FOTOGRAF" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="TBL_URUNOZELLIK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUNID" Type="int" />
+          <Property Name="OZELLIKID" Type="int" />
+          <Property Name="OZELLIKVALUE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_UYE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="20" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="20" />
+          <Property Name="MAIL" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFON" Type="varchar" MaxLength="15" />
+          <Property Name="SIFRE" Type="varchar" MaxLength="10" />
+          <Property Name="ADRESID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_YORUM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YORUM" Type="varchar" MaxLength="5000" />
+          <Property Name="URUN" Type="int" />
+          <Property Name="DURUM" Type="bit" />
+          <Property Name="UYE" Type="int" />
+          <Property Name="rate" Type="int" />
+        </EntityType>
+        <Association Name="FK_TBL_ADRES_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_ADRES" Type="Self.TBL_ADRES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ADRES">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_FAVORI_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_FAVORI" Type="Self.TBL_FAVORI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FAVORI">
+              <PropertyRef Name="URUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_FAVORI_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_FAVORI" Type="Self.TBL_FAVORI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FAVORI">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARIS_TBL_DURUM">
+          <End Role="TBL_DURUM" Type="Self.TBL_DURUM" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DURUM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="DURUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARIS_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="0..1" />
+          <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SIPARIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARISKALEMI">
+              <PropertyRef Name="SIPARISID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARISKALEMI">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUN_TBL_KATEGORI">
+          <End Role="TBL_KATEGORI" Type="Self.TBL_KATEGORI" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEGORI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUN_TBL_MARKA">
+          <End Role="TBL_MARKA" Type="Self.TBL_MARKA" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MARKA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="MARKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUNOZELLIK_TBL_OZELLIK">
+          <End Role="TBL_OZELLIK" Type="Self.TBL_OZELLIK" Multiplicity="0..1" />
+          <End Role="TBL_URUNOZELLIK" Type="Self.TBL_URUNOZELLIK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_OZELLIK">
+              <PropertyRef Name="OZELLIKID" />
+            </Principal>
+            <Dependent Role="TBL_URUNOZELLIK">
+              <PropertyRef Name="OZELLIKID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUNOZELLIK_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_URUNOZELLIK" Type="Self.TBL_URUNOZELLIK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUNOZELLIK">
+              <PropertyRef Name="URUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_YORUM_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_YORUM" Type="Self.TBL_YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_YORUM">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_YORUM_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_YORUM" Type="Self.TBL_YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_YORUM">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EticaretModelStoreContainer">
+          <EntitySet Name="TBL_ADRES" EntityType="Self.TBL_ADRES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DESTEK" EntityType="Self.TBL_DESTEK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_DURUM" EntityType="Self.TBL_DURUM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_FAVORI" EntityType="Self.TBL_FAVORI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_KATEGORI" EntityType="Self.TBL_KATEGORI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MARKA" EntityType="Self.TBL_MARKA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_OZELLIK" EntityType="Self.TBL_OZELLIK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PERSONEL" EntityType="Self.TBL_PERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SATIS" EntityType="Self.TBL_SATIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SEPET" EntityType="Self.TBL_SEPET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SIPARIS" EntityType="Self.TBL_SIPARIS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SIPARISKALEMI" EntityType="Self.TBL_SIPARISKALEMI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_URUN" EntityType="Self.TBL_URUN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_URUNOZELLIK" EntityType="Self.TBL_URUNOZELLIK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_UYE" EntityType="Self.TBL_UYE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_YORUM" EntityType="Self.TBL_YORUM" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_ADRES_TBL_UYE" Association="Self.FK_TBL_ADRES_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_FAVORI_TBL_URUN" Association="Self.FK_TBL_FAVORI_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_FAVORI" EntitySet="TBL_FAVORI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_FAVORI_TBL_UYE" Association="Self.FK_TBL_FAVORI_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_FAVORI" EntitySet="TBL_FAVORI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_DURUM" Association="Self.FK_TBL_SIPARIS_TBL_DURUM">
+            <End Role="TBL_DURUM" EntitySet="TBL_DURUM" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_UYE" Association="Self.FK_TBL_SIPARIS_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" Association="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_URUN" Association="Self.FK_TBL_SIPARISKALEMI_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUN_TBL_KATEGORI" Association="Self.FK_TBL_URUN_TBL_KATEGORI">
+            <End Role="TBL_KATEGORI" EntitySet="TBL_KATEGORI" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUN_TBL_MARKA" Association="Self.FK_TBL_URUN_TBL_MARKA">
+            <End Role="TBL_MARKA" EntitySet="TBL_MARKA" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUNOZELLIK_TBL_OZELLIK" Association="Self.FK_TBL_URUNOZELLIK_TBL_OZELLIK">
+            <End Role="TBL_OZELLIK" EntitySet="TBL_OZELLIK" />
+            <End Role="TBL_URUNOZELLIK" EntitySet="TBL_URUNOZELLIK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUNOZELLIK_TBL_URUN" Association="Self.FK_TBL_URUNOZELLIK_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_URUNOZELLIK" EntitySet="TBL_URUNOZELLIK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_YORUM_TBL_URUN" Association="Self.FK_TBL_YORUM_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_YORUM" EntitySet="TBL_YORUM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_YORUM_TBL_UYE" Association="Self.FK_TBL_YORUM_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_YORUM" EntitySet="TBL_YORUM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EticaretModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_DESTEK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KONU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MESAJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_DURUM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DURUM" Type="Int32" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="Self.FK_TBL_SIPARIS_TBL_DURUM" FromRole="TBL_DURUM" ToRole="TBL_SIPARIS" />
+        </EntityType>
+        <EntityType Name="TBL_KATEGORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_URUN_TBL_KATEGORI" FromRole="TBL_KATEGORI" ToRole="TBL_URUN" />
+        </EntityType>
+        <EntityType Name="TBL_MARKA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_URUN_TBL_MARKA" FromRole="TBL_MARKA" ToRole="TBL_URUN" />
+          <Property Name="FOTOGRAF" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADSOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SIFRE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBL_SATIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN" Type="Int32" />
+          <Property Name="UYE" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+          <Property Name="SATISADET" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBL_SEPET">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN" Type="Int32" />
+          <Property Name="UYE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBL_SIPARIS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UYE" Type="Int32" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+          <Property Name="TOPLAMTUTAR" Type="Int32" />
+          <Property Name="DURUM" Type="Int32" />
+          <NavigationProperty Name="TBL_DURUM" Relationship="Self.FK_TBL_SIPARIS_TBL_DURUM" FromRole="TBL_SIPARIS" ToRole="TBL_DURUM" />
+          <NavigationProperty Name="TBL_UYE" Relationship="Self.FK_TBL_SIPARIS_TBL_UYE" FromRole="TBL_SIPARIS" ToRole="TBL_UYE" />
+          <NavigationProperty Name="TBL_SIPARISKALEMI" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" FromRole="TBL_SIPARIS" ToRole="TBL_SIPARISKALEMI" />
+        </EntityType>
+        <EntityType Name="TBL_SIPARISKALEMI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISID" Type="Int32" />
+          <Property Name="URUN" Type="Int32" />
+          <Property Name="ADET" Type="Int32" />
+          <Property Name="TUTAR" Type="Int32" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" FromRole="TBL_SIPARISKALEMI" ToRole="TBL_SIPARIS" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_URUN" FromRole="TBL_SIPARISKALEMI" ToRole="TBL_URUN" />
+        </EntityType>
+        <EntityType Name="TBL_URUN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MARKA" Type="Int32" />
+          <Property Name="KATEGORI" Type="Int32" />
+          <Property Name="STOK" Type="Int32" />
+          <Property Name="FIYAT" Type="Int32" />
+          <Property Name="DURUM" Type="Boolean" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_KATEGORI" Relationship="Self.FK_TBL_URUN_TBL_KATEGORI" FromRole="TBL_URUN" ToRole="TBL_KATEGORI" />
+          <NavigationProperty Name="TBL_MARKA" Relationship="Self.FK_TBL_URUN_TBL_MARKA" FromRole="TBL_URUN" ToRole="TBL_MARKA" />
+          <NavigationProperty Name="TBL_SIPARISKALEMI" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_SIPARISKALEMI" />
+          <NavigationProperty Name="TBL_YORUM" Relationship="Self.FK_TBL_YORUM_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_YORUM" />
+          <Property Name="FOTOGRAF" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_URUNOZELLIK" Relationship="EticaretModel.FK_TBL_URUNOZELLIK_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_URUNOZELLIK" />
+          <NavigationProperty Name="TBL_FAVORI" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_FAVORI" />
+        </EntityType>
+        <EntityType Name="TBL_UYE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFON" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SIFRE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="Self.FK_TBL_SIPARIS_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_SIPARIS" />
+          <NavigationProperty Name="TBL_YORUM" Relationship="EticaretModel.FK_TBL_YORUM_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_YORUM" />
+          <NavigationProperty Name="TBL_FAVORI" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_FAVORI" />
+          <Property Name="ADRESID" Type="Int32" />
+          <NavigationProperty Name="TBL_ADRES" Relationship="EticaretModel.FK_TBL_ADRES_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_ADRES" />
+        </EntityType>
+        <EntityType Name="TBL_YORUM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YORUM" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="URUN" Type="Int32" />
+          <Property Name="DURUM" Type="Boolean" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_YORUM_TBL_URUN" FromRole="TBL_YORUM" ToRole="TBL_URUN" />
+          <Property Name="UYE" Type="Int32" />
+          <NavigationProperty Name="TBL_UYE" Relationship="EticaretModel.FK_TBL_YORUM_TBL_UYE" FromRole="TBL_YORUM" ToRole="TBL_UYE" />
+          <Property Name="rate" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_TBL_SIPARIS_TBL_DURUM">
+          <End Role="TBL_DURUM" Type="Self.TBL_DURUM" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_DURUM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="DURUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUN_TBL_KATEGORI">
+          <End Role="TBL_KATEGORI" Type="Self.TBL_KATEGORI" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEGORI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUN_TBL_MARKA">
+          <End Role="TBL_MARKA" Type="Self.TBL_MARKA" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MARKA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="MARKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARIS_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="0..1" />
+          <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SIPARIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARISKALEMI">
+              <PropertyRef Name="SIPARISID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARISKALEMI">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_YORUM_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_YORUM" Type="Self.TBL_YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_YORUM">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EticaretEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_DESTEK" EntityType="Self.TBL_DESTEK" />
+          <EntitySet Name="TBL_DURUM" EntityType="Self.TBL_DURUM" />
+          <EntitySet Name="TBL_KATEGORI" EntityType="Self.TBL_KATEGORI" />
+          <EntitySet Name="TBL_MARKA" EntityType="Self.TBL_MARKA" />
+          <EntitySet Name="TBL_PERSONEL" EntityType="Self.TBL_PERSONEL" />
+          <EntitySet Name="TBL_SATIS" EntityType="Self.TBL_SATIS" />
+          <EntitySet Name="TBL_SEPET" EntityType="Self.TBL_SEPET" />
+          <EntitySet Name="TBL_SIPARIS" EntityType="Self.TBL_SIPARIS" />
+          <EntitySet Name="TBL_SIPARISKALEMI" EntityType="Self.TBL_SIPARISKALEMI" />
+          <EntitySet Name="TBL_URUN" EntityType="Self.TBL_URUN" />
+          <EntitySet Name="TBL_UYE" EntityType="Self.TBL_UYE" />
+          <EntitySet Name="TBL_YORUM" EntityType="Self.TBL_YORUM" />
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_DURUM" Association="Self.FK_TBL_SIPARIS_TBL_DURUM">
+            <End Role="TBL_DURUM" EntitySet="TBL_DURUM" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUN_TBL_KATEGORI" Association="Self.FK_TBL_URUN_TBL_KATEGORI">
+            <End Role="TBL_KATEGORI" EntitySet="TBL_KATEGORI" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUN_TBL_MARKA" Association="Self.FK_TBL_URUN_TBL_MARKA">
+            <End Role="TBL_MARKA" EntitySet="TBL_MARKA" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_UYE" Association="Self.FK_TBL_SIPARIS_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" Association="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_URUN" Association="Self.FK_TBL_SIPARISKALEMI_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_YORUM_TBL_URUN" Association="Self.FK_TBL_YORUM_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_YORUM" EntitySet="TBL_YORUM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_YORUM_TBL_UYE" Association="EticaretModel.FK_TBL_YORUM_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_YORUM" EntitySet="TBL_YORUM" />
+          </AssociationSet>
+          <EntitySet Name="TBL_OZELLIK" EntityType="EticaretModel.TBL_OZELLIK" />
+          <EntitySet Name="TBL_URUNOZELLIK" EntityType="EticaretModel.TBL_URUNOZELLIK" />
+          <AssociationSet Name="FK_TBL_URUNOZELLIK_TBL_OZELLIK" Association="EticaretModel.FK_TBL_URUNOZELLIK_TBL_OZELLIK">
+            <End Role="TBL_OZELLIK" EntitySet="TBL_OZELLIK" />
+            <End Role="TBL_URUNOZELLIK" EntitySet="TBL_URUNOZELLIK" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUNOZELLIK_TBL_URUN" Association="EticaretModel.FK_TBL_URUNOZELLIK_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_URUNOZELLIK" EntitySet="TBL_URUNOZELLIK" />
+          </AssociationSet>
+          <EntitySet Name="TBL_FAVORI" EntityType="EticaretModel.TBL_FAVORI" />
+          <AssociationSet Name="FK_TBL_FAVORI_TBL_URUN" Association="EticaretModel.FK_TBL_FAVORI_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_FAVORI" EntitySet="TBL_FAVORI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_FAVORI_TBL_UYE" Association="EticaretModel.FK_TBL_FAVORI_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_FAVORI" EntitySet="TBL_FAVORI" />
+          </AssociationSet>
+          <EntitySet Name="TBL_ADRES" EntityType="EticaretModel.TBL_ADRES" />
+          <AssociationSet Name="FK_TBL_ADRES_TBL_UYE" Association="EticaretModel.FK_TBL_ADRES_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_TBL_YORUM_TBL_UYE">
+          <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_YORUM" Role="TBL_YORUM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_YORUM">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_OZELLIK">
+          <Key>
+            <PropertyRef Name="OZELLIKID" />
+          </Key>
+          <Property Name="OZELLIKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OZELLIKAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_URUNOZELLIK" Relationship="EticaretModel.FK_TBL_URUNOZELLIK_TBL_OZELLIK" FromRole="TBL_OZELLIK" ToRole="TBL_URUNOZELLIK" />
+        </EntityType>
+        <EntityType Name="TBL_URUNOZELLIK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUNID" Type="Int32" />
+          <Property Name="OZELLIKID" Type="Int32" />
+          <Property Name="OZELLIKVALUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_OZELLIK" Relationship="EticaretModel.FK_TBL_URUNOZELLIK_TBL_OZELLIK" FromRole="TBL_URUNOZELLIK" ToRole="TBL_OZELLIK" />
+          <NavigationProperty Name="TBL_URUN" Relationship="EticaretModel.FK_TBL_URUNOZELLIK_TBL_URUN" FromRole="TBL_URUNOZELLIK" ToRole="TBL_URUN" />
+        </EntityType>
+        <Association Name="FK_TBL_URUNOZELLIK_TBL_OZELLIK">
+          <End Type="EticaretModel.TBL_OZELLIK" Role="TBL_OZELLIK" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_URUNOZELLIK" Role="TBL_URUNOZELLIK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_OZELLIK">
+              <PropertyRef Name="OZELLIKID" />
+            </Principal>
+            <Dependent Role="TBL_URUNOZELLIK">
+              <PropertyRef Name="OZELLIKID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUNOZELLIK_TBL_URUN">
+          <End Type="EticaretModel.TBL_URUN" Role="TBL_URUN" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_URUNOZELLIK" Role="TBL_URUNOZELLIK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_URUNOZELLIK">
+              <PropertyRef Name="URUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_FAVORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUNID" Type="Int32" />
+          <Property Name="UYEID" Type="Int32" />
+          <NavigationProperty Name="TBL_URUN" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_URUN" FromRole="TBL_FAVORI" ToRole="TBL_URUN" />
+          <NavigationProperty Name="TBL_UYE" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_UYE" FromRole="TBL_FAVORI" ToRole="TBL_UYE" />
+        </EntityType>
+        <Association Name="FK_TBL_FAVORI_TBL_URUN">
+          <End Type="EticaretModel.TBL_URUN" Role="TBL_URUN" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_FAVORI" Role="TBL_FAVORI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FAVORI">
+              <PropertyRef Name="URUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_FAVORI_TBL_UYE">
+          <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_FAVORI" Role="TBL_FAVORI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_FAVORI">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_ADRES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UYEID" Type="Int32" />
+          <Property Name="IL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ILCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADRES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_UYE" Relationship="EticaretModel.FK_TBL_ADRES_TBL_UYE" FromRole="TBL_ADRES" ToRole="TBL_UYE" />
+          <Property Name="BASLIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TBL_ADRES_TBL_UYE">
+          <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_ADRES" Role="TBL_ADRES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_ADRES">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EticaretModelStoreContainer" CdmEntityContainer="EticaretEntities1">
+          <EntitySetMapping Name="TBL_DESTEK">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_DESTEK">
+              <MappingFragment StoreEntitySet="TBL_DESTEK">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="KONU" ColumnName="KONU" />
+                <ScalarProperty Name="MESAJ" ColumnName="MESAJ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_DURUM">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_DURUM">
+              <MappingFragment StoreEntitySet="TBL_DURUM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_KATEGORI">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_KATEGORI">
+              <MappingFragment StoreEntitySet="TBL_KATEGORI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MARKA">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_MARKA">
+              <MappingFragment StoreEntitySet="TBL_MARKA">
+                <ScalarProperty Name="FOTOGRAF" ColumnName="FOTOGRAF" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PERSONEL">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_PERSONEL">
+              <MappingFragment StoreEntitySet="TBL_PERSONEL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SATIS">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_SATIS">
+              <MappingFragment StoreEntitySet="TBL_SATIS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
+                <ScalarProperty Name="UYE" ColumnName="UYE" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="SATISADET" ColumnName="SATISADET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SEPET">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_SEPET">
+              <MappingFragment StoreEntitySet="TBL_SEPET">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
+                <ScalarProperty Name="UYE" ColumnName="UYE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SIPARIS">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_SIPARIS">
+              <MappingFragment StoreEntitySet="TBL_SIPARIS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UYE" ColumnName="UYE" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="TOPLAMTUTAR" ColumnName="TOPLAMTUTAR" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SIPARISKALEMI">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_SIPARISKALEMI">
+              <MappingFragment StoreEntitySet="TBL_SIPARISKALEMI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SIPARISID" ColumnName="SIPARISID" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
+                <ScalarProperty Name="TUTAR" ColumnName="TUTAR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_URUN">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_URUN">
+              <MappingFragment StoreEntitySet="TBL_URUN">
+                <ScalarProperty Name="FOTOGRAF" ColumnName="FOTOGRAF" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
+                <ScalarProperty Name="STOK" ColumnName="STOK" />
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_UYE">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_UYE">
+              <MappingFragment StoreEntitySet="TBL_UYE">
+                <ScalarProperty Name="ADRESID" ColumnName="ADRESID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_YORUM">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_YORUM">
+              <MappingFragment StoreEntitySet="TBL_YORUM">
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="UYE" ColumnName="UYE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="YORUM" ColumnName="YORUM" />
+                <ScalarProperty Name="URUN" ColumnName="URUN" />
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_OZELLIK">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_OZELLIK">
+              <MappingFragment StoreEntitySet="TBL_OZELLIK">
+                <ScalarProperty Name="OZELLIKAD" ColumnName="OZELLIKAD" />
+                <ScalarProperty Name="OZELLIKID" ColumnName="OZELLIKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_URUNOZELLIK">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_URUNOZELLIK">
+              <MappingFragment StoreEntitySet="TBL_URUNOZELLIK">
+                <ScalarProperty Name="OZELLIKVALUE" ColumnName="OZELLIKVALUE" />
+                <ScalarProperty Name="OZELLIKID" ColumnName="OZELLIKID" />
+                <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_FAVORI">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_FAVORI">
+              <MappingFragment StoreEntitySet="TBL_FAVORI">
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+                <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADRES">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_ADRES">
+              <MappingFragment StoreEntitySet="TBL_ADRES">
+                <ScalarProperty Name="BASLIK" ColumnName="BASLIK" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="ILCE" ColumnName="ILCE" />
+                <ScalarProperty Name="IL" ColumnName="IL" />
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

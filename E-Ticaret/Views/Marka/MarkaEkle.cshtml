@@ -1,0 +1,21 @@
+﻿@model E_Ticaret.Models.Entity.TBL_MARKA
+@{
+    ViewBag.Title = "MarkaEkle";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+
+<br />
+
+
+@using (Html.BeginForm("MarkaEkle", "Marka", FormMethod.Post))
+{
+
+    <label>MARKA AD</label>
+    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+
+    <button class="btn btn-info">EKLE</button>
+
+
+}
+

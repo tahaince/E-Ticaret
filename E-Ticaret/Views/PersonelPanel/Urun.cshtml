@@ -1,0 +1,53 @@
+﻿@using E_Ticaret.Models.Entity
+@model List<TBL_URUN>
+@{
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+
+
+
+
+
+
+<table class="table table-bordered">
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>URUNID</td>
+        <td>URUNAD</td>
+        <td>MARKA</td>
+        <td>KATEGORİ</td>
+        <td>STOK</td>
+        <td>DURUM</td>
+        <td>FİYAT</td>
+        <td>GÖRSEL</td>
+        <td>İŞLEMLER</td>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+
+            <td>@x.ID</td>
+            <td>@x.AD</td>
+            <td>@x.TBL_KATEGORI.AD</td>
+            <td>@x.TBL_MARKA.AD</td>
+            <td>@x.STOK</td>
+            <td>@x.DURUM</td>
+            <td>@x.FIYAT</td>
+            <td><img src="@x.FOTOGRAF" width="100px" height="100px" /></td>
+            <td>
+                <a class="btn btn-success" href="/PersonelPanel/UrunGetir/@x.ID">GÜNCELLE</a>
+                <a class="btn btn-danger" href="/PersonelPanel/UrunSil/@x.ID">SİL</a>
+            </td>
+
+        </tr>
+
+
+
+
+    }
+
+
+</table>
+<a href="/PersonelPanel/UrunEkle"><button class="btn btn-info">EKLE</button></a>

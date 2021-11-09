@@ -1,0 +1,32 @@
+﻿@using E_Ticaret.Models.Entity
+@model List<TBL_MARKA>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+
+
+<br />
+<table class="table table-bordered">
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>Marka Id</td>
+        <td>Marka AD</td>
+        <td>İşlemler</td>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.ID</td>
+            <td>@x.AD</td>
+            <td>
+                <a class="btn btn-success" href="/Marka/MarkaGetir/@x.ID">Güncelle</a>
+                <a class="btn btn-danger" href="/Marka/MarkaSil/@x.ID">Sil</a>
+            </td>
+
+        </tr>
+    }
+</table>
+
+<a href="/Marka/MarkaEkle"><button class="btn btn-warning">Marka Ekle</button></a>

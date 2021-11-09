@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4cd68bc1ae9a4c9fab9138ec90927687" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="EticaretModel.TBL_DESTEK" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_DURUM" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_KATEGORI" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_MARKA" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_PERSONEL" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_SATIS" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_SEPET" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_SIPARIS" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_SIPARISKALEMI" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_URUN" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_UYE" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_YORUM" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_TBL_DURUM" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_URUN_TBL_KATEGORI" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_URUN_TBL_MARKA" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_TBL_UYE" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_URUN" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_YORUM_TBL_URUN" ManuallyRouted="false" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_YORUM_TBL_UYE" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_OZELLIK" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_URUNOZELLIK" Width="1.5" PointX="8" PointY="11.875" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_URUNOZELLIK_TBL_OZELLIK" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_URUNOZELLIK_TBL_URUN" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_FAVORI" Width="1.5" PointX="12.5" PointY="5.75" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_FAVORI_TBL_URUN" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_FAVORI_TBL_UYE" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_ADRES" Width="1.5" PointX="5.25" PointY="11.25" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_ADRES_TBL_UYE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

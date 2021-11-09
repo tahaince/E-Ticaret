@@ -1,0 +1,60 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+@{
+    ViewBag.Title = "AdresEkle";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+<div style="margin:20px">
+@using (Html.BeginForm("AdresEkle", "Adres", FormMethod.Post))
+{
+
+    <div class="form-group first">
+        <label for="name">BAŞLIK</label>
+        <input type="text" class="form-control" name="BASLIK" required>
+
+    </div>
+
+    <div class="form-group first">
+        <label for="name">İL</label>
+        <input type="text" class="form-control" name="IL" required>
+
+    </div>
+
+    <div class="form-group first">
+        <label for="name">ILCE</label>
+        <input type="text" class="form-control" name="ILCE" required>
+
+    </div>
+
+    <div class="form-group first">
+        <label for="name">ADRES</label>
+        <input type="text" class="form-control" name="ADRES" required>
+
+    </div>
+
+    <div>
+        <input type="hidden" class="form-control" name="UYEID" value="@ViewBag.dgr14">
+
+    </div>
+
+    <button class="btn btn-info">EKLE</button>
+
+}
+    </div>
+
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
+
+
+

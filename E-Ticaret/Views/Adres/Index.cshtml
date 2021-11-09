@@ -1,0 +1,98 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+
+<br />
+<br />
+<table class="table table-responsive">
+
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>BAŞLIK</td>
+        <td>İL</td>
+        <td>İLÇE</td>
+        <td>ADRES</td>
+        <td></td>
+        <td></td>
+
+    </tr>
+    @foreach (var x in Model.deger7)
+    {
+        <tr>
+            <td>@x.BASLIK</td>
+            <td>@x.IL</td>
+            <td>@x.ILCE</td>
+            <td>@x.ADRES</td>
+            <td> <a href="/Adres/AdresGetir/@x.ID"><button class="btn btn-success">GÜNCELLE</button></a></td>
+            <td>
+                <a href="/Adres/AdresSil/@x.ID"><button class="btn btn-close"></button></a>
+
+            </td>
+        </tr>
+    }
+
+
+</table>
+<br />
+
+<br />
+<br />
+
+
+<h2>
+    ADRES EKLE
+</h2>
+<br />
+
+
+<div style="margin:20px">
+    @using (Html.BeginForm("AdresEkle", "Adres", FormMethod.Post))
+    {
+
+        <div class="form-group first">
+            <label for="name"><b>BAŞLIK</b></label>
+            <input type="text" class="form-control" name="BASLIK" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>İL</b></label>
+            <input type="text" class="form-control" name="IL" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>ILCE</b></label>
+            <input type="text" class="form-control" name="ILCE" required>
+
+        </div>
+
+        <div class="form-group first">
+            <label for="name"><b>ADRES</b></label>
+            <input type="text" class="form-control" name="ADRES" required>
+
+        </div>
+
+        <div>
+            <input type="hidden" class="form-control" name="UYEID" value="@ViewBag.dgr14">
+
+        </div>
+
+        <br />
+
+        <button class="btn btn-dark">ADRES EKLE</button>
+
+    }
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+

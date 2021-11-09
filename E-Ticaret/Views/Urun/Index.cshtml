@@ -1,0 +1,299 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <style>
+
+        #div1 {
+            border-radius: 25px;
+            border: 5px solid #000000;
+            padding: 20px;
+            width: 1500px;
+            height: 250px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+            .rate:not(:checked) > input {
+                position: absolute;
+                top: -9999px;
+            }
+
+            .rate:not(:checked) > label {
+                float: right;
+                width: 1em;
+                overflow: hidden;
+                white-space: nowrap;
+                cursor: pointer;
+                font-size: 30px;
+                color: #ccc;
+            }
+
+                .rate:not(:checked) > label:before {
+                    content: '★ ';
+                }
+
+            .rate > input:checked ~ label {
+                color: #ffc700;
+            }
+
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;
+            }
+
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
+
+        .checked {
+            color: orange;
+        }
+
+
+    </style>
+</head>
+
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@ViewBag.dgr1" alt="..." /></div>
+
+            <div class="col-md-6">
+                <h1 class="fw-bolder mb-4">@ViewBag.dgr8</h1>
+                <h2 class="fw-bolder mb-4">@ViewBag.dgr2</h2>
+
+                <div class="fs-5 mb-5">
+                    <h3>@ViewBag.dgr4 TL</h3>
+                </div>
+
+                @using (Html.BeginForm("Favori", "Urun", FormMethod.Post))
+                {
+                    if (ViewBag.dgr11 != null)
+                    {
+
+
+                        <input class="form-control" type="hidden" name="URUNID" value="@ViewBag.dgr7" />
+                        <input class="form-control" name="UYEID" type="hidden" value="@ViewBag.dgr14" />
+
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            FAVORİLERE EKLE
+                        </button>
+                    }
+                }
+                <br />
+
+
+
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        <i class="bi-cart-fill me-1"></i>
+                        Sepete Ekle
+                    </button>
+                </div>
+                <br />
+                <p class="lead">@ViewBag.dgr3</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">ÖNERİLEN ÜRÜNLER</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var x in Model.deger1)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="border-dark" src="@x.FOTOGRAF" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h4>@x.TBL_MARKA.AD</h4>
+                                <h5 class="fw-bolder">@x.AD</h5>
+                                <!-- Product price-->
+                                @x.FIYAT TL
+                                <br />
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/Urun/Index/@x.ID">Ürünü  Göster</a></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div style="margin:30px">
+        <h1>ÖZELLİKLER</h1>
+
+        <table class="table table-bordered">
+          
+            @foreach (var z in Model.deger4)
+            {
+                <tr class="bg-dark" style="color:whitesmoke">
+
+                    <td>@z.TBL_OZELLIK.OZELLIKAD</td>
+                    <td>@z.OZELLIKVALUE</td>
+
+
+                    
+
+                </tr>
+            }
+            </table>
+
+
+    </div>
+
+    <br />
+    <br />
+
+ 
+    <div style="border-top-style:groove">
+        <div>
+            <h1 style="margin:20px">YORUMLAR</h1>
+            
+            <div style="margin:30px">
+
+
+                @using (Html.BeginForm("YorumEkle", "Urun", FormMethod.Post))
+                {
+                    if (ViewBag.dgr11 != null)
+                    {
+
+
+                        <input class="form-control" type="hidden" name="URUN" value="@ViewBag.dgr7" />
+                        <input class="form-control" name="UYE" type="hidden" value="@ViewBag.dgr14" />
+
+                        <input class="form-control" type="hidden" name="DURUM" value="true" />
+                        <br />
+                        <br />
+                        <label>YORUM</label>
+                        <br />
+
+                        <textarea rows="5" class="form-control" name="YORUM" cols="50" required placeholder="Yorumunuzu Giriniz..."></textarea>
+
+                        <br />
+                        <br />
+                        <label>PUAN</label>
+                        <br />
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <br />
+                        <br />
+
+                        <button class="btn btn-info" style="background-color:black;color:white ; border-color:black" >Gönder</button>
+                    }
+
+                    else
+                    {
+
+                    <input class="form-control" type="hidden" name="URUN" value="@ViewBag.dgr7" />
+                    <input class="form-control" name="UYE" type="hidden" value="@ViewBag.dgr14" />
+
+                    <input class="form-control" type="hidden" name="DURUM" value="true" />
+                    <br />
+                    <br />
+                    <label>YORUM</label>
+
+
+                    <textarea rows="5" class="form-control" name="YORUM" placeholder="YORUM YAPMAK İÇİN GİRİŞ YAPIN..." cols="50" readonly ></textarea>
+
+                    @*<br />
+                    <br />
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>*@
+                    <br />
+                    <br />
+
+
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+            </div>
+
+
+            <br />
+            <br />
+            @foreach (var y in Model.deger3)
+            {
+        <div id="div1">
+            <h3 style="color:black">@y.TBL_UYE.AD</h3>
+
+            @for (int i = 0; i < y.rate; i++)
+            {
+            <span class="fa fa-star checked"></span>
+            }
+            <p>@y.YORUM</p>
+            
+
+        </div>
+                <br />
+            }
+        </div>
+
+
+
+
+
+    </div>
+</section>

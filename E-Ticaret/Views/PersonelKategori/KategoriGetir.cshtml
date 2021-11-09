@@ -1,0 +1,31 @@
+﻿@model E_Ticaret.Models.Entity.TBL_KATEGORI
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<h2>KategoriGetir</h2>
+
+
+
+
+@using (Html.BeginForm("KategoriGuncelle", "PersonelKategori", FormMethod.Post))
+{
+<form class="form-group">
+
+    form class="form-group">
+    <div>
+        <label>ÜRÜN ID</label>
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", readyonly = true })
+    </div>
+    <br />
+
+
+    <div>
+        <label>ÜRÜN AD</label>
+        @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    </div>
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+</form>
+}

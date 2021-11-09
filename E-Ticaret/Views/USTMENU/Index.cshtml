@@ -1,0 +1,155 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+    @{
+        Layout = null;
+
+
+}
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TAHA BİLGİSAYAR</title>
+        <!-- Favicon-->
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+
+        <link href="~/web1/startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/URUNLER/Index">TAHA BİLGİSAYAR</a>
+                @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>*@
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+
+
+
+                        @*@using (Html.BeginForm("Index", "PersonelKategori", FormMethod.Post))
+                        {*@
+
+
+
+                            @*<li class="nav-item"><input class="form-control" placeholder="Ürün Adı Giriniz.." /></li>*@
+                            @*<li class="nav-item">@Html.TextBox("p")</li>
+                        }*@
+
+                        @foreach (var x in Model.deger5)
+                        {
+
+                        <li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/@x.ID">@x.AD</a></li>
+                        }
+                        @*<li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/2">BİLGİSAYAR</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/3">OYUN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/13">TELEVİZYON</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/8">SAAT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Kategori/KategoriSayfasi/9">ÇEVRE BİRİMLERİ</a></li>*@
+                        <li>
+
+
+
+                            <div class="w3-container">
+                                @if (ViewBag.dgr11 != null)
+                                {
+                                    <div class="w3-dropdown-hover">
+                                        <button class="w3-button w3-black">@ViewBag.dgr11  @ViewBag.dgr12</button>
+                                        <div class="w3-dropdown-content w3-bar-block w3-border">
+
+                                            <a href="/Login/Index" class="w3-bar-item w3-button">Profilim</a>
+                                            <a href="/Login/Index" class="w3-bar-item w3-button">Siparişlerim</a>
+                                            <a href="/Login/Index" class="w3-bar-item w3-button">Mesajlar</a>
+                                            <a href="/Favori/Index" class="w3-bar-item w3-button">Favoriler</a>
+                                            <a href="/Adres/Index" class="w3-bar-item w3-button">Adres Bilgileri</a>
+                                            <a href="/Login/Index" class="w3-bar-item w3-button">Şifre Değiştir</a>
+
+
+
+                                            @*<a href="#" class="w3-bar-item w3-button">ŞİFRE DEĞİŞTİR</a>
+        <a href="#" class="w3-bar-item w3-button"></a>*@
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                                else
+                                {
+                                    <div class="w3-dropdown-hover">
+                                        <button class="w3-button w3-black">KULLANICI İŞLEMLERİ</button>
+                                        <div class="w3-dropdown-content w3-bar-block w3-border">
+
+                                            <a href="/Login/Index" class="w3-bar-item w3-button">GİRİŞ YAP</a>
+                                            <a href="/KayitOl/Index" class="w3-bar-item w3-button">ÜYE OL</a>
+
+
+
+
+
+
+                                            @*<a href="#" class="w3-bar-item w3-button">ŞİFRE DEĞİŞTİR</a>
+                            <a href="#" class="w3-bar-item w3-button"></a>*@
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+
+                        </li>
+
+                        @*<li class="nav-item"><a class="nav-link" href="/Kategori/Bilgisayar">BİLGİSAYAR</a></li>
+        <li class="nav-item"><a class="nav-link" href="#!">TABLET</a></li>
+        <li class="nav-item"><a class="nav-link" href="#!">AKILLI SAAT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#!">OYUN KONSOLLARI</a></li>*@
+
+                    </ul>
+                    </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            SEPET
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Teknolojinin Bir Numaralı Adresi</h1>
+                </div>
+            </div>
+        </header>
+        @RenderBody()        <!-- Section-->
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+            <br />
+            <br />
+            @if (Session["MAIL"] == null)
+            {
+            <p style="color:whitesmoke;text-align:center">PERSONEL GİRİŞİ İÇİN  <a href="/Personel/PersonelLogin">TIKLAYINIZ</a></p>
+            }
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="~/web1/startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+    </body>
+</html>

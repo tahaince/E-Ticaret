@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>TAHA TEKNOLOJİ</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/personeltemplate/css/styles.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-dark " id="sidebar-wrapper">
+            <div class="sidebar-heading" class="bg-dark" style="color:white">TAHA BİLGİSAYAR </div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-dark" style="color:white; border-top-color:white">Ana Sayfa</a>
+                <a href="/PersonelPanel/Urun/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Ürünler</a>
+                <a href="/PersonelKategori/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Kategoriler</a>
+                <a href="/Marka/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Markalar</a>
+                <a href="/PersonelOzellik/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Özellikler</a>
+                <a href="/Yazar/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">İstatistikler</a>
+                <a href="/Odunc/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Kazanç</a>
+                <a href="/Islemler/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Siparişler</a>
+                <a href="/Iletisim/Index/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">İletişim</a>
+                <a href="/Odunc/OduncVer/" class="list-group-item list-group-item-action bg-dark" style="color:white ; border-top-color:white">Ayarlar</a>
+
+
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom">
+
+
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>*@
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+
+                     
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" style="color:white ;margin-right:10px" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kullancı İşlemleri
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profil</a>
+                                <a class="dropdown-item" href="#">Şifre Değiştir</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Çıkış Yap</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+
+    <script src="~/personeltemplate/js/scripts.js"></script>
+
+    <!-- Menu Toggle Script -->
+
+
+</body>
+
+</html>
+

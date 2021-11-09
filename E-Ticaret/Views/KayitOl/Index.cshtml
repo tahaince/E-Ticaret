@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="~/signup-form-09/fonts/icomoon/style.css" rel="stylesheet" />
+
+    <link href="~/signup-form-09/css/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link href="~/signup-form-09/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Style -->
+    <link href="~/signup-form-09/css/style.css" rel="stylesheet" />
+
+    <title>Sign Up #9</title>
+</head>
+<body>
+
+
+
+    <div class="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="form-block">
+                                <div class="mb-4">
+                                    <h3>KAYIT OL</h3>
+                                    @*<p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
+                                </div>
+                                @using (Html.BeginForm("Index", "KayitOl", FormMethod.Post))
+                                {
+                            <form action="#" method="post">
+                                <div class="form-group first">
+                                    <label for="name">Ad</label>
+                                    <input type="text" class="form-control" name="AD" required>
+
+                                </div>
+
+                                <div class="form-group first">
+                                    <label for="name">Soyad</label>
+                                    <input type="text" class="form-control" name="SOYAD" required>
+
+                                </div>
+
+                                <div class="form-group first">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" name="MAIL" required>
+
+                                </div>
+
+
+
+                                <div class="form-group first">
+                                    <label for="email">Telefon Numarası</label>
+                                    <input type="number" class="form-control" name="TELEFON" required>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="password">Şifre</label>
+                                    <input type="password" class="form-control" name="SIFRE" required>
+
+                                </div>
+                                <div class="form-group last mb-4">
+                                    <label for="re-password">Şifre Tekrar</label>
+                                    <input type="password" class="form-control" name="SIFRETEKRAR" required>
+
+                                </div>
+
+                                <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-3 mb-sm-0">
+                                        <span class="caption">Agree our <a href="#">Terms and Conditions</a></span>
+                                        <input type="checkbox" checked="checked" />
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                    <span class="ml-auto"><a href="#" class="forgot-pass">Kayıt Ol</a></span>
+                                </div>
+
+                                <input type="submit" value="Register" class="btn btn-pill text-white btn-block btn-primary">
+
+                                <span class="d-block text-center my-4 text-muted"> or register with</span>
+
+                                <div class="social-login text-center">
+                                    <a href="#" class="facebook">
+                                        <span class="icon-facebook mr-3"></span>
+                                    </a>
+                                    <a href="#" class="twitter">
+                                        <span class="icon-twitter mr-3"></span>
+                                    </a>
+                                    <a href="#" class="google">
+                                        <span class="icon-google mr-3"></span>
+                                    </a>
+                                </div>
+                            </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/signup-form-09/js/bootstrap.min.js"></script>
+    <script src="~/signup-form-09/js/jquery-3.3.1.min.js"></script>
+    <script src="~/signup-form-09/js/main.js"></script>
+    <script src="~/signup-form-09/js/popper.min.js"></script>
+    
+   
+            
+          
+</body>
+</html>

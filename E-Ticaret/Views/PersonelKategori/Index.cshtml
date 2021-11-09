@@ -1,0 +1,64 @@
+﻿@using E_Ticaret.Models.Entity
+@model List<TBL_KATEGORI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+
+
+
+@using (Html.BeginForm("Index","PersonelKategori", FormMethod.Post))
+{
+    <div style="margin-top:15px;margin-bottom:15px;">
+        <b>ARAMA</b>
+        <br />
+        @Html.TextBox("p")
+        <button class="btn btn-warning">ARA</button>
+
+
+
+
+    </div>
+
+}
+
+
+
+
+
+<table class="table table-bordered">
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>KategoriId</td>
+        <td>Kategori AD</td>
+        <td>İşlemler</td>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.ID</td>
+            <td>@x.AD</td>
+            <td>
+                <a class="btn btn-success" href="/PersonelKategori/KategoriGetir/@x.ID">Güncelle</a>
+                <a class="btn btn-danger" href="/PersonelKategori/KategoriSil/@x.ID">Sil</a>
+
+
+            </td>
+
+        </tr>
+    }
+</table>
+
+<a href="/PersonelKategori/KategoriEkle"><button class="btn btn-warning">Kategori Ekle</button></a>
+<script>
+
+
+
+
+
+
+</script>
