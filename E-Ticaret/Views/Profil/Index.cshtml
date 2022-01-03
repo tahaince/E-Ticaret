@@ -1,0 +1,94 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+<head>
+    <style>
+        .bg-dark {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+        }
+
+        body {
+            background: bg-dark
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #BA68C8
+        }
+
+        .profile-button {
+            background: rgb(99, 39, 120);
+            box-shadow: none;
+            border: none
+        }
+
+            .profile-button:hover {
+                background: #682773
+            }
+
+            .profile-button:focus {
+                background: #682773;
+                box-shadow: none
+            }
+
+            .profile-button:active {
+                background: #682773;
+                box-shadow: none
+            }
+
+        .back:hover {
+            color: #682773;
+            cursor: pointer
+        }
+
+        .labels {
+            font-size: 11px
+        }
+
+        .add-experience:hover {
+            background: #BA68C8;
+            color: #fff;
+            cursor: pointer;
+            border: solid 1px #BA68C8
+        }
+    </style>
+
+
+</head>
+
+@using (Html.BeginForm("ProfilGuncelle", "Profil",FormMethod.Post))
+{
+
+<div class="col-md-5 border-right" style="margin:auto">
+    <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="text-right">PROFİLİM</h1>
+        </div>
+        <div class="row mt-2">
+            @*<div class="col-md-6">*@<input type="hidden" class="form-control" name="ID" value=@Model.deger8.First().ID>@*</div>*@
+            <div class="col-md-6"><b><label>AD</label></b><input class="form-control" placeholder="first name" name="AD" value=@Model.deger8.First().AD></div>
+            <div class="col-md-6"><b><label>Soyad</label></b><input class="form-control" name="SOYAD" value=@Model.deger8.First().SOYAD placeholder="surname"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12"><b><label>Telefon Numarası</label></b><input class="form-control" name="TELEFON" value=@Model.deger8.First().TELEFON></div>
+            <div>
+                <br />
+            </div>
+            <div class="col-md-12"><b><label>Mail Adresi</label></b><input class="form-control" name="MAIL" value=@Model.deger8.First().MAIL></div>
+
+            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">KAYDET</button></div>
+        </div>
+    </div>
+    
+
+</div>
+}
+<br />
+
+<br />
+

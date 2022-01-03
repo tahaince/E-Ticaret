@@ -1,0 +1,56 @@
+﻿@model E_Ticaret.Models.Entity.TBL_URUNOZELLIK
+@{
+    ViewBag.Title = "OzellikEkle";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<h2>OzellikEkle</h2>
+
+
+
+
+
+
+
+<div style="margin:20px">
+    @using (Html.BeginForm("OzellikEkle", "Ozellikler", FormMethod.Post))
+    {
+
+    <div class="form-group first">
+        <label for="name">ÜRÜN İD</label>
+<input class="form-control" value=@ViewBag.dgr3 readonly=true />
+    </div>
+
+        <div class="form-group first">
+            <label for="name">OZELLİK</label>
+            @Html.DropDownListFor(x => x.TBL_OZELLIK.OZELLIKID, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+        </div>
+        <br />
+
+        <div class="form-group first">
+            <label for="name">DEĞER</label>
+            @Html.TextBoxFor(x => x.OZELLIKVALUE, new { @class = "form-control" })
+
+        </div>
+        <br />
+
+
+
+        <button class="btn btn-success">EKLE</button>
+
+
+    }
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+
+<br />
+<br />
+

@@ -1,0 +1,45 @@
+﻿@using E_Ticaret.Models.Entity
+@model List<TBL_URUNOZELLIK>  
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<div>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>AD</td>
+            <td>DEĞER</td>
+            <td>İŞLEMLER</td>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.TBL_OZELLIK.OZELLIKAD</td>
+                <td>@x.OZELLIKVALUE</td>
+                <td>
+                    <a class="btn btn-success" href="/Ozellikler/OzellikGetir/@x.ID">GÜNCELLE</a>
+                    <a class="btn btn-warning" href="/Ozellikler/OzellikSil/@x.ID">SİL</a>
+                </td>
+            </tr>
+            <br />
+
+        }
+
+        <button class=" btn btn-info"><a href="/Ozellikler/OzellikEkle/@ViewBag.urunvb1">Özellik Ekle</a></button>
+
+
+
+
+
+    </table>
+
+
+
+
+</div>

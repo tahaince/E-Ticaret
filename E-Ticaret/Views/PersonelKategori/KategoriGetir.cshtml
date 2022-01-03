@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/PersonelLayout.cshtml";
 }
 
-<h2>KategoriGetir</h2>
 
 
 
@@ -13,10 +12,10 @@
 {
 <form class="form-group">
 
-    form class="form-group">
+
     <div>
         <label>ÜRÜN ID</label>
-        @Html.TextBoxFor(x => x.ID, new { @class = "form-control", readyonly = true })
+        @Html.TextBoxFor(x => x.ID, new {  @class = "form-control",Readonly="true" })
     </div>
     <br />
 

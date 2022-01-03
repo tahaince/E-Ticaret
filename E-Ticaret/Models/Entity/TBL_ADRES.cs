@@ -14,6 +14,12 @@ namespace E_Ticaret.Models.Entity
     
     public partial class TBL_ADRES
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TBL_ADRES()
+        {
+            this.TBL_SIPARIS = new HashSet<TBL_SIPARIS>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> UYEID { get; set; }
         public string IL { get; set; }
@@ -22,5 +28,7 @@ namespace E_Ticaret.Models.Entity
         public string BASLIK { get; set; }
     
         public virtual TBL_UYE TBL_UYE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBL_SIPARIS> TBL_SIPARIS { get; set; }
     }
 }

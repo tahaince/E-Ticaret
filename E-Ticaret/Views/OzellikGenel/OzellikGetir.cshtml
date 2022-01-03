@@ -1,0 +1,30 @@
+﻿@model E_Ticaret.Models.Entity.TBL_OZELLIK
+@{
+    ViewBag.Title = "OzellikGetir";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<br />
+
+
+
+@using (Html.BeginForm("OzellikGuncelle", "OzellikGenel", FormMethod.Post))
+{
+    <form class="form-group">
+
+        <div>
+            <label>ÖZELLİK ID</label>
+            @Html.TextBoxFor(x => x.OZELLIKID, new { @class = "form-control", ReadOnly = "true" })
+        </div>
+        <br />
+
+
+        <div>
+            <label>ÖZELLİK AD</label>
+            @Html.TextBoxFor(x => x.OZELLIKAD, new { @class = "form-control" })
+        </div>
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    </form>
+}
+

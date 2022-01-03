@@ -65,6 +65,27 @@ namespace E_Ticaret.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult SepeteEkle(TBL_SEPET p)
+        {
+            var kontrol = db.TBL_SEPET.Where(x => x.URUN == p.URUN && x.UYE == p.UYE).FirstOrDefault();
+            if (kontrol == null)
+            {
+                p.ADET = 1;
+                db.TBL_SEPET.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Sepet");
+            }
+            else
+            {
+                
+                kontrol.ADET++;
+                db.SaveChanges();
+                return RedirectToAction("Index","Sepet");
+            }
+
+        }
+
     }
 
    

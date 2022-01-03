@@ -21,6 +21,7 @@ namespace E_Ticaret.Models.Entity
             this.TBL_YORUM = new HashSet<TBL_YORUM>();
             this.TBL_URUNOZELLIK = new HashSet<TBL_URUNOZELLIK>();
             this.TBL_FAVORI = new HashSet<TBL_FAVORI>();
+            this.TBL_SEPET = new HashSet<TBL_SEPET>();
         }
     
         public int ID { get; set; }
@@ -43,5 +44,7 @@ namespace E_Ticaret.Models.Entity
         public virtual ICollection<TBL_URUNOZELLIK> TBL_URUNOZELLIK { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_FAVORI> TBL_FAVORI { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBL_SEPET> TBL_SEPET { get; set; }
     }
 }

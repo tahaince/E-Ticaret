@@ -26,11 +26,20 @@
             <a style="color:black" href="/Urun/Index/@x.URUNID"><b> @x.TBL_URUN.TBL_MARKA.AD @x.TBL_URUN.AD</b></a>
         </td>
         <td>
-            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                SEPETE EKLE
-            </button>
-        </td>
+            @using (Html.BeginForm("SepeteEkle", "Favori", FormMethod.Post))
 
+            {
+                <input class="form-control" type="hidden" name="URUN" value="@x.TBL_URUN.ID" />
+                <input class="form-control" name="UYE" type="hidden" value="@x.TBL_UYE.ID" />
+                <input class="form-control" name="FIYAT" type="hidden" value="@x.TBL_URUN.FIYAT" />
+
+
+                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                    SEPETE EKLE
+                </button>
+            }
+        </td>
+            
         <td>
             <a href="/Favori/FavoriSil/@x.ID"><button class="btn btn-close"></button></a>
 

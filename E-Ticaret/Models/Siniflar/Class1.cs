@@ -15,11 +15,16 @@ namespace E_Ticaret.Models.Siniflar
         public IEnumerable<TBL_URUNOZELLIK> deger4 { get; set; }
         public IEnumerable<TBL_KATEGORI> deger5 { get; set; }
         public IEnumerable<TBL_FAVORI> deger6 { get; set; }
-        public IEnumerable<TBL_ADRES> deger7 { get; set; }
+        public List<TBL_ADRES> deger7 { get; set; }
+        public IEnumerable<TBL_UYE> deger8 { get; set; }
+
+        public IEnumerable<TBL_SEPET> deger9 { get; set; }
 
 
+        public IEnumerable<TBL_DESTEK> deger10 { get; set; }
 
-
+        public IEnumerable<TBL_SIPARIS> deger11 { get; set; }
+        public IEnumerable<TBL_SIPARISKALEMI> deger12 { get; set; }
 
 
 

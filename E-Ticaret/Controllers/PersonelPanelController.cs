@@ -113,5 +113,24 @@ namespace E_Ticaret.Controllers
             return RedirectToAction("Urun");
         }
 
+        public  ActionResult StokArtır(int id)
+        {
+
+            var urun = db.TBL_URUN.Find(id);
+            urun.STOK++;
+            db.SaveChanges();
+            return RedirectToAction("Urun");
+        }
+
+
+        public ActionResult StokAzalt(int id)
+        {
+
+            var urun = db.TBL_URUN.Find(id);
+            urun.STOK--;
+            db.SaveChanges();
+            return RedirectToAction("Urun");
+        }
+
     }
 }

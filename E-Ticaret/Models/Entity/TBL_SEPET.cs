@@ -17,5 +17,9 @@ namespace E_Ticaret.Models.Entity
         public int ID { get; set; }
         public Nullable<int> URUN { get; set; }
         public Nullable<int> UYE { get; set; }
+        public Nullable<int> ADET { get; set; }
+    
+        public virtual TBL_URUN TBL_URUN { get; set; }
+        public virtual TBL_UYE TBL_UYE { get; set; }
     }
 }

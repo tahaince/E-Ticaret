@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4cd68bc1ae9a4c9fab9138ec90927687" Name="Diagram1" ZoomLevel="63">
+      <Diagram DiagramId="4cd68bc1ae9a4c9fab9138ec90927687" Name="Diagram1" ZoomLevel="89">
         <EntityTypeShape EntityType="EticaretModel.TBL_DESTEK" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EticaretModel.TBL_DURUM" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="EticaretModel.TBL_KATEGORI" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
@@ -21,7 +21,6 @@
         <AssociationConnector Association="EticaretModel.FK_TBL_URUN_TBL_KATEGORI" ManuallyRouted="false" />
         <AssociationConnector Association="EticaretModel.FK_TBL_URUN_TBL_MARKA" ManuallyRouted="false" />
         <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_TBL_UYE" ManuallyRouted="false" />
-        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" ManuallyRouted="false" />
         <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_URUN" ManuallyRouted="false" />
         <AssociationConnector Association="EticaretModel.FK_TBL_YORUM_TBL_URUN" ManuallyRouted="false" />
         <AssociationConnector Association="EticaretModel.FK_TBL_YORUM_TBL_UYE" />
@@ -34,6 +33,11 @@
         <AssociationConnector Association="EticaretModel.FK_TBL_FAVORI_TBL_UYE" />
         <EntityTypeShape EntityType="EticaretModel.TBL_ADRES" Width="1.5" PointX="5.25" PointY="11.25" />
         <AssociationConnector Association="EticaretModel.FK_TBL_ADRES_TBL_UYE" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SEPET_TBL_URUN" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SEPET_TBL_UYE" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_ADMIN" Width="1.5" PointX="12.375" PointY="0.75" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

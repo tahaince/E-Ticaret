@@ -20,7 +20,7 @@ namespace E_Ticaret.Models.Entity
         public Nullable<int> ADET { get; set; }
         public Nullable<int> TUTAR { get; set; }
     
-        public virtual TBL_SIPARIS TBL_SIPARIS { get; set; }
         public virtual TBL_URUN TBL_URUN { get; set; }
+        public virtual TBL_SIPARIS TBL_SIPARIS { get; set; }
     }
 }

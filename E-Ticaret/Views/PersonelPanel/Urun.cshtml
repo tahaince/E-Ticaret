@@ -15,8 +15,8 @@
     <tr class="bg-dark" style="color:whitesmoke">
         <td>URUNID</td>
         <td>URUNAD</td>
-        <td>MARKA</td>
         <td>KATEGORİ</td>
+        <td>MARKA</td>
         <td>STOK</td>
         <td>DURUM</td>
         <td>FİYAT</td>
@@ -32,22 +32,47 @@
             <td>@x.AD</td>
             <td>@x.TBL_KATEGORI.AD</td>
             <td>@x.TBL_MARKA.AD</td>
-            <td>@x.STOK</td>
+
+            <td>
+                <a href="/PersonelPanel/StokArtır/@x.ID"><button class="btn btn-success" onclick="arttir()" style="text-align:center; width:30px; height:30px">+</button></a>
+                <input style="width:105px" class="form-control" name="Stok" id="stok" value="@x.STOK" />
+                <a class="btn btn-danger" onclick="azalt()" href="/PersonelPanel/StokAzalt/@x.ID" style="text-align:center; width:30px;height:30px">-</a>
+
+            </td>
+
             <td>@x.DURUM</td>
             <td>@x.FIYAT</td>
             <td><img src="@x.FOTOGRAF" width="100px" height="100px" /></td>
             <td>
                 <a class="btn btn-success" href="/PersonelPanel/UrunGetir/@x.ID">GÜNCELLE</a>
                 <a class="btn btn-danger" href="/PersonelPanel/UrunSil/@x.ID">SİL</a>
+                <a class="btn btn-info" href="/Ozellikler/Index/@x.ID">ÖZELLİKLER</a>
+
             </td>
 
         </tr>
 
 
+        <script>
 
+            function arttir() {
+                var stok;
+                stok = document.getElementById("stok");
+                
+
+            }
+
+            function azalt() {
+                var stok;
+                stok = document.getElementById("stok");
+
+            }
+
+
+        </script>
 
     }
 
 
 </table>
-<a href="/PersonelPanel/UrunEkle"><button class="btn btn-info">EKLE</button></a>
+<a href="/PersonelPanel/UrunEkle/"><button class="btn btn-info">EKLE</button></a>

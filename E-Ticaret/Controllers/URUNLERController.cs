@@ -16,13 +16,17 @@ namespace E_Ticaret.Controllers
         public ActionResult Index()
         {
 
+
+
             Class1 cs = new Class1();
             cs.deger1 = db.TBL_URUN.ToList();
             cs.deger5 = db.TBL_KATEGORI.ToList();
 
-            if (Session["MAIL"]!=null)
+
+            if (Session["MAIL"] != null)
             {
                 getdata();
+
 
             }
 
@@ -40,9 +44,15 @@ namespace E_Ticaret.Controllers
             var deger11 = degerler.AD;
             var deger12 = degerler.SOYAD;
             var deger13 = degerler.MAIL;
+            var deger14 = degerler.ID;
             ViewBag.dgr11 = deger11;
             ViewBag.dgr12 = deger12;
             ViewBag.dgr13 = deger13;
+            ViewBag.dgr14 = deger14;
+            var toplamadet = db.TBL_SEPET.Where(z => z.TBL_UYE.ID == deger14).Sum(z => z.ADET);
+            ViewBag.toplamadet = toplamadet;
+
+
             return View();
         }
     }

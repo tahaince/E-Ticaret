@@ -28,14 +28,21 @@
     <link href="~/Login_v1/css/main.css" rel="stylesheet" />
     <link href="~/Login_v1/css/util.css" rel="stylesheet" />
     <!--===============================================================================================-->
+
+    <style>
+   
+
+    </style>
+
 </head>
-<body>
+<body >
 
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="https://logos.textgiraffe.com/logos/logo-name/Taha-designstyle-summer-m.png" alt="IMG">
+                    <img src="~/tahapc.jpeg" alt="IMG">
+
                 </div>
                 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
                 {
@@ -65,13 +72,14 @@
                                 Giriş Yap
                             </button>
                         </div>
-                        
+
                         <div class="text-center p-t-12">
-                           
-                            <a class="txt2" href="#">
+
+                            <a class="txt2" href="~/Login/SifremiUnuttum/">
                                 Şifrenimi Unuttun?
                             </a>
                         </div>
+
 
                         <div class="text-center p-t-136">
                             <a class="txt2" href="/KayitOl/Index">
@@ -81,7 +89,7 @@
                         </div>
                     </form>
                 }
-                </div>
+            </div>
         </div>
     </div>
 

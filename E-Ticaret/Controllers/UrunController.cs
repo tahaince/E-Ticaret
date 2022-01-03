@@ -31,6 +31,7 @@ namespace E_Ticaret.Controllers
             var deger9 = urun.TBL_MARKA.FOTOGRAF;
 
 
+
             if (Session["MAIL"] != null)
             {
                 getdata();
@@ -69,23 +70,84 @@ namespace E_Ticaret.Controllers
 
         {
 
-            db.TBL_YORUM.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("Index", "URUNLER");
+            var kontrol = db.TBL_YORUM.Where(x => x.UYE == p.UYE && x.URUN == p.URUN).FirstOrDefault();
+
+            if(kontrol==null)
+            {
+
+                db.TBL_YORUM.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = kontrol.TBL_URUN.ID });
+
+
+
+            }
+
+
+            else
+            {
+                Response.Write("<script>alert('Daha önce yorum yaptınız...');</script>");
+                return RedirectToAction("Index", new { id =kontrol.TBL_URUN.ID });
+
+            }
 
 
         }
+
+
+
         [HttpPost]
         public ActionResult Favori(TBL_FAVORI p)
 
         {
-         
-            db.TBL_FAVORI.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("Index","Favori");
+            var kontrol = db.TBL_FAVORI.Where(x => x.URUNID == p.URUNID && x.UYEID == p.UYEID).FirstOrDefault();
+
+            if (kontrol == null)
+            {
+
+                db.TBL_FAVORI.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Favori");
+
+            }
+            else
+            {
+                Response.Write("<script>alert('Bu Ürün Zaten Favorilerinizde...');</script>");
+
+                return RedirectToAction("Index","FAVORI");
+
+            }
         }
 
-        
+
+
+        [HttpPost]
+        public ActionResult SepeteEkle(TBL_SEPET p)
+
+        {
+
+
+            var kontrol = db.TBL_SEPET.Where(x => x.URUN == p.URUN && x.UYE == p.UYE).FirstOrDefault();
+
+            if (kontrol == null)
+            {
+                var urun = db.TBL_URUN.Find(p.ID);
+               
+                db.TBL_SEPET.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Sepet");
+
+            }
+            else
+            {
+
+                kontrol.ADET++;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Sepet");
+            }
+        }
+
+
 
         public ActionResult getdata()
         {
@@ -102,6 +164,10 @@ namespace E_Ticaret.Controllers
             ViewBag.dgr12 = deger12;
             ViewBag.dgr13 = deger13;
             ViewBag.dgr14 = deger14;
+
+            var toplamadet = db.TBL_SEPET.Where(z => z.TBL_UYE.ID == deger14).Sum(z => z.ADET);
+            ViewBag.toplamadet = toplamadet;
+
 
             return View();
         }

@@ -1,0 +1,63 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+@{
+    ViewBag.Title = "SiparisGoruntule";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+<table class="table table-responsive">
+
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>AD SOYAD</td>
+        <td>TARIH</td>
+        <td>ADRES</td>
+        <td>DURUM</td>
+        <td>TOPLAM TUTAR</td>
+        <td>Detay</td>
+
+
+    </tr>
+    @foreach (var x in Model.deger11)
+    {
+        <tr>
+            <td>
+                <p>@x.TBL_UYE.AD   @x.TBL_UYE.SOYAD</p>
+            </td>
+
+            <td>
+                @x.TARIH
+            </td>
+            <td>
+
+                @x.TBL_ADRES.ADRES
+            </td>
+            <td>
+                @x.DURUM
+            </td>
+
+            <td>
+                @x.TOPLAMTUTAR
+
+            </td>
+
+
+            <td>
+
+                <a href="/Siprais/SiparisKalemGoruntule">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        DETAY GÖR
+                    </button>
+                </a>
+            </td>
+
+
+        </tr>
+    }
+
+
+</table>
+<br />
+<br />
+<br />

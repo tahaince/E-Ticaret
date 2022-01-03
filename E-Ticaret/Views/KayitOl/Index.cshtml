@@ -22,7 +22,7 @@
     <!-- Style -->
     <link href="~/signup-form-09/css/style.css" rel="stylesheet" />
 
-    <title>Sign Up #9</title>
+    <title>KAYIT OL</title>
 </head>
 <body>
 
@@ -74,22 +74,24 @@
                                     <input type="password" class="form-control" name="SIFRE" required>
 
                                 </div>
-                                <div class="form-group last mb-4">
+
+                                
+                                @*<div class="form-group last mb-4">
                                     <label for="re-password">Şifre Tekrar</label>
                                     <input type="password" class="form-control" name="SIFRETEKRAR" required>
 
-                                </div>
+                                </div>*@
 
-                                <div class="d-flex mb-5 align-items-center">
+                                @*<div class="d-flex mb-5 align-items-center">
                                     <label class="control control--checkbox mb-3 mb-sm-0">
-                                        <span class="caption">Agree our <a href="#">Terms and Conditions</a></span>
+                                        <span class="caption">KOŞUULARI KABUL EDİN</span>
                                         <input type="checkbox" checked="checked" />
                                         <div class="control__indicator"></div>
                                     </label>
-                                    <span class="ml-auto"><a href="#" class="forgot-pass">Kayıt Ol</a></span>
-                                </div>
-
-                                <input type="submit" value="Register" class="btn btn-pill text-white btn-block btn-primary">
+                                </div>*@
+                                <div class="alert alert-danger">@ViewBag.msg</div>
+                               
+                                <input type="submit" value="Kayıt Ol" onclick="kontrol" class="btn btn-pill text-white btn-block btn-primary">
 
                                 <span class="d-block text-center my-4 text-muted"> or register with</span>
 
@@ -119,9 +121,10 @@
     <script src="~/signup-form-09/js/jquery-3.3.1.min.js"></script>
     <script src="~/signup-form-09/js/main.js"></script>
     <script src="~/signup-form-09/js/popper.min.js"></script>
-    
+   
+ 
    
             
-          
+      
 </body>
 </html>

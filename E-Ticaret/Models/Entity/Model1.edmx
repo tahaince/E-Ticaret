@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EticaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="SIFRE" Type="varchar" MaxLength="50" />
+          <Property Name="FOTOGRAF" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="TBL_ADRES">
           <Key>
             <PropertyRef Name="ID" />
@@ -26,6 +37,7 @@
           <Property Name="MAIL" Type="varchar" MaxLength="50" />
           <Property Name="KONU" Type="varchar" MaxLength="50" />
           <Property Name="MESAJ" Type="varchar" MaxLength="50" />
+          <Property Name="TARIH" Type="datetime" />
         </EntityType>
         <EntityType Name="TBL_DURUM">
           <Key>
@@ -91,6 +103,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="URUN" Type="int" />
           <Property Name="UYE" Type="int" />
+          <Property Name="ADET" Type="int" />
         </EntityType>
         <EntityType Name="TBL_SIPARIS">
           <Key>
@@ -101,6 +114,7 @@
           <Property Name="TARIH" Type="date" />
           <Property Name="TOPLAMTUTAR" Type="int" />
           <Property Name="DURUM" Type="int" />
+          <Property Name="ADRES" Type="int" />
         </EntityType>
         <EntityType Name="TBL_SIPARISKALEMI">
           <Key>
@@ -194,6 +208,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TBL_SEPET_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_SEPET" Type="Self.TBL_SEPET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SEPET">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SEPET_TBL_UYE">
+          <End Role="TBL_UYE" Type="Self.TBL_UYE" Multiplicity="0..1" />
+          <End Role="TBL_SEPET" Type="Self.TBL_SEPET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SEPET">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARIS_TBL_ADRES">
+          <End Role="TBL_ADRES" Type="Self.TBL_ADRES" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADRES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="ADRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TBL_SIPARIS_TBL_DURUM">
           <End Role="TBL_DURUM" Type="Self.TBL_DURUM" Multiplicity="0..1" />
           <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
@@ -218,7 +268,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS">
           <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="0..1" />
           <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,6 +365,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EticaretModelStoreContainer">
+          <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_ADRES" EntityType="Self.TBL_ADRES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DESTEK" EntityType="Self.TBL_DESTEK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DURUM" EntityType="Self.TBL_DURUM" Schema="dbo" store:Type="Tables" />
@@ -343,6 +394,18 @@
             <End Role="TBL_UYE" EntitySet="TBL_UYE" />
             <End Role="TBL_FAVORI" EntitySet="TBL_FAVORI" />
           </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEPET_TBL_URUN" Association="Self.FK_TBL_SEPET_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SEPET" EntitySet="TBL_SEPET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEPET_TBL_UYE" Association="Self.FK_TBL_SEPET_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_SEPET" EntitySet="TBL_SEPET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_ADRES" Association="Self.FK_TBL_SIPARIS_TBL_ADRES">
+            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
           <AssociationSet Name="FK_TBL_SIPARIS_TBL_DURUM" Association="Self.FK_TBL_SIPARIS_TBL_DURUM">
             <End Role="TBL_DURUM" EntitySet="TBL_DURUM" />
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
@@ -351,7 +414,7 @@
             <End Role="TBL_UYE" EntitySet="TBL_UYE" />
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" Association="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS" Association="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS">
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
             <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
           </AssociationSet>
@@ -398,6 +461,7 @@
           <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="KONU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MESAJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TARIH" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TBL_DURUM">
           <Key>
@@ -451,6 +515,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URUN" Type="Int32" />
           <Property Name="UYE" Type="Int32" />
+          <Property Name="ADET" Type="Int32" />
+          <NavigationProperty Name="TBL_URUN" Relationship="EticaretModel.FK_TBL_SEPET_TBL_URUN" FromRole="TBL_SEPET" ToRole="TBL_URUN" />
+          <NavigationProperty Name="TBL_UYE" Relationship="EticaretModel.FK_TBL_SEPET_TBL_UYE" FromRole="TBL_SEPET" ToRole="TBL_UYE" />
         </EntityType>
         <EntityType Name="TBL_SIPARIS">
           <Key>
@@ -463,7 +530,9 @@
           <Property Name="DURUM" Type="Int32" />
           <NavigationProperty Name="TBL_DURUM" Relationship="Self.FK_TBL_SIPARIS_TBL_DURUM" FromRole="TBL_SIPARIS" ToRole="TBL_DURUM" />
           <NavigationProperty Name="TBL_UYE" Relationship="Self.FK_TBL_SIPARIS_TBL_UYE" FromRole="TBL_SIPARIS" ToRole="TBL_UYE" />
-          <NavigationProperty Name="TBL_SIPARISKALEMI" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" FromRole="TBL_SIPARIS" ToRole="TBL_SIPARISKALEMI" />
+          <Property Name="ADRES" Type="Int32" />
+          <NavigationProperty Name="TBL_ADRES" Relationship="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES" FromRole="TBL_SIPARIS" ToRole="TBL_ADRES" />
+          <NavigationProperty Name="TBL_SIPARISKALEMI" Relationship="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS" FromRole="TBL_SIPARIS" ToRole="TBL_SIPARISKALEMI" />
         </EntityType>
         <EntityType Name="TBL_SIPARISKALEMI">
           <Key>
@@ -474,8 +543,8 @@
           <Property Name="URUN" Type="Int32" />
           <Property Name="ADET" Type="Int32" />
           <Property Name="TUTAR" Type="Int32" />
-          <NavigationProperty Name="TBL_SIPARIS" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" FromRole="TBL_SIPARISKALEMI" ToRole="TBL_SIPARIS" />
           <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_SIPARISKALEMI_TBL_URUN" FromRole="TBL_SIPARISKALEMI" ToRole="TBL_URUN" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS" FromRole="TBL_SIPARISKALEMI" ToRole="TBL_SIPARIS" />
         </EntityType>
         <EntityType Name="TBL_URUN">
           <Key>
@@ -496,6 +565,7 @@
           <Property Name="FOTOGRAF" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TBL_URUNOZELLIK" Relationship="EticaretModel.FK_TBL_URUNOZELLIK_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_URUNOZELLIK" />
           <NavigationProperty Name="TBL_FAVORI" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_FAVORI" />
+          <NavigationProperty Name="TBL_SEPET" Relationship="EticaretModel.FK_TBL_SEPET_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_SEPET" />
         </EntityType>
         <EntityType Name="TBL_UYE">
           <Key>
@@ -512,6 +582,7 @@
           <NavigationProperty Name="TBL_FAVORI" Relationship="EticaretModel.FK_TBL_FAVORI_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_FAVORI" />
           <Property Name="ADRESID" Type="Int32" />
           <NavigationProperty Name="TBL_ADRES" Relationship="EticaretModel.FK_TBL_ADRES_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_ADRES" />
+          <NavigationProperty Name="TBL_SEPET" Relationship="EticaretModel.FK_TBL_SEPET_TBL_UYE" FromRole="TBL_UYE" ToRole="TBL_SEPET" />
         </EntityType>
         <EntityType Name="TBL_YORUM">
           <Key>
@@ -574,18 +645,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
-          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="0..1" />
-          <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_SIPARIS">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TBL_SIPARISKALEMI">
-              <PropertyRef Name="SIPARISID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TBL_SIPARISKALEMI_TBL_URUN">
           <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
           <End Role="TBL_SIPARISKALEMI" Type="Self.TBL_SIPARISKALEMI" Multiplicity="*" />
@@ -639,10 +698,6 @@
             <End Role="TBL_UYE" EntitySet="TBL_UYE" />
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS1" Association="Self.FK_TBL_SIPARISKALEMI_TBL_SIPARIS1">
-            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
-            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
-          </AssociationSet>
           <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_URUN" Association="Self.FK_TBL_SIPARISKALEMI_TBL_URUN">
             <End Role="TBL_URUN" EntitySet="TBL_URUN" />
             <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
@@ -678,6 +733,23 @@
           <AssociationSet Name="FK_TBL_ADRES_TBL_UYE" Association="EticaretModel.FK_TBL_ADRES_TBL_UYE">
             <End Role="TBL_UYE" EntitySet="TBL_UYE" />
             <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEPET_TBL_URUN" Association="EticaretModel.FK_TBL_SEPET_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SEPET" EntitySet="TBL_SEPET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SEPET_TBL_UYE" Association="EticaretModel.FK_TBL_SEPET_TBL_UYE">
+            <End Role="TBL_UYE" EntitySet="TBL_UYE" />
+            <End Role="TBL_SEPET" EntitySet="TBL_SEPET" />
+          </AssociationSet>
+          <EntitySet Name="TBL_ADMIN" EntityType="EticaretModel.TBL_ADMIN" />
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_ADRES" Association="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES">
+            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS" Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS">
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+            <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_TBL_YORUM_TBL_UYE">
@@ -780,6 +852,7 @@
           <Property Name="ADRES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TBL_UYE" Relationship="EticaretModel.FK_TBL_ADRES_TBL_UYE" FromRole="TBL_ADRES" ToRole="TBL_UYE" />
           <Property Name="BASLIK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES" FromRole="TBL_ADRES" ToRole="TBL_SIPARIS" />
         </EntityType>
         <Association Name="FK_TBL_ADRES_TBL_UYE">
           <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
@@ -793,6 +866,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TBL_SEPET_TBL_URUN">
+          <End Type="EticaretModel.TBL_URUN" Role="TBL_URUN" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_SEPET" Role="TBL_SEPET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SEPET">
+              <PropertyRef Name="URUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SEPET_TBL_UYE">
+          <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_SEPET" Role="TBL_SEPET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_UYE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SEPET">
+              <PropertyRef Name="UYE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FOTOGRAF" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_TBL_SIPARIS_TBL_ADRES">
+          <End Type="EticaretModel.TBL_ADRES" Role="TBL_ADRES" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_SIPARIS" Role="TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_ADRES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="ADRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SIPARISKALEMI_TBL_SIPARIS">
+          <End Type="EticaretModel.TBL_SIPARIS" Role="TBL_SIPARIS" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_SIPARISKALEMI" Role="TBL_SIPARISKALEMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_SIPARIS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARISKALEMI">
+              <PropertyRef Name="SIPARISID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -802,6 +934,7 @@
           <EntitySetMapping Name="TBL_DESTEK">
             <EntityTypeMapping TypeName="EticaretModel.TBL_DESTEK">
               <MappingFragment StoreEntitySet="TBL_DESTEK">
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
@@ -861,6 +994,7 @@
           <EntitySetMapping Name="TBL_SEPET">
             <EntityTypeMapping TypeName="EticaretModel.TBL_SEPET">
               <MappingFragment StoreEntitySet="TBL_SEPET">
+                <ScalarProperty Name="ADET" ColumnName="ADET" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="URUN" ColumnName="URUN" />
                 <ScalarProperty Name="UYE" ColumnName="UYE" />
@@ -870,6 +1004,7 @@
           <EntitySetMapping Name="TBL_SIPARIS">
             <EntityTypeMapping TypeName="EticaretModel.TBL_SIPARIS">
               <MappingFragment StoreEntitySet="TBL_SIPARIS">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UYE" ColumnName="UYE" />
                 <ScalarProperty Name="TARIH" ColumnName="TARIH" />
@@ -964,6 +1099,18 @@
                 <ScalarProperty Name="ILCE" ColumnName="ILCE" />
                 <ScalarProperty Name="IL" ColumnName="IL" />
                 <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADMIN">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_ADMIN">
+              <MappingFragment StoreEntitySet="TBL_ADMIN">
+                <ScalarProperty Name="FOTOGRAF" ColumnName="FOTOGRAF" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

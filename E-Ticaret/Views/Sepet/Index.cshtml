@@ -1,0 +1,98 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+<br />
+
+
+
+<table class="table table-responsive">
+
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td>ÜRÜNLER</td>
+        <td>ADET</td>
+        <td>BİRİM FİYAT</td>
+        @*<td>TOPLAM FİYAT</td>*@
+        <td>SİL</td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+
+    </tr>
+    @foreach (var x in Model.deger9)
+    {
+<tr>
+    <td>
+        <img src="@x.TBL_URUN.FOTOGRAF" width="100px" height="100px" />
+        <a style="color:black" href="/Urun/Index/@x.TBL_URUN.ID"><b> @x.TBL_URUN.TBL_MARKA.AD @x.TBL_URUN.AD</b></a>
+
+    </td>
+
+    <td width="300px">
+        <a href="/Sepet/StokArtır/@x.ID"><button class="btn btn-dark" style="text-align:center; width:30px; height:30px">+</button></a>
+
+        <input class="form-control" readonly=true style="width:50px" value="@x.ADET" id="adet" />
+
+        <a href="/Sepet/StokAzalt/@x.ID"><button class="btn btn-outline-dark" style="text-align:center; width:30px; height:30px">-</button></a>
+
+    </td>
+
+    <td>
+        @x.TBL_URUN.FIYAT
+    </td>
+
+    <td>
+        @ViewBag.adetbirim
+    </td>
+
+    @*<td>
+            <input class="form-control" style="width:250px"id="toplam" />
+        </td>*@
+
+    <td>
+        <a href="/Sepet/Sil/@x.ID"><button class="btn btn-close"></button></a>
+
+    </td>
+
+</tr>
+    }
+
+
+</table>
+
+<br />
+<table class="form-control">
+    <tr>
+        <td class="bg-dark">
+           
+        </td>
+        <td> TOPLAM FİYAT: @ViewBag.toplam TL</td>
+    </tr>
+    
+</table>
+
+
+
+<br />
+<a href="/Siprais/Index"><button class="bg-dark" style="color:whitesmoke;margin-left:30px;width:180px;">Sepeti Onayla</button></a>
+<br />
+<br />
+
+@*<script>
+
+    var function toplamfiyat() {
+
+        var adet = document.getElementById("adet");
+        var fiyat = document.getElementById("fiyat");
+        var toplam = (adet * fiyat);
+        document.getElementById("toplam").innerHTML = toplam;
+
+    }
+</script>*@

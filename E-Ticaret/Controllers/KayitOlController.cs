@@ -25,12 +25,22 @@ namespace E_Ticaret.Controllers
         [HttpPost]
         public ActionResult Index(TBL_UYE p)
         {
-          
-            db.TBL_UYE.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Login");
 
 
+            var uye = db.TBL_UYE.FirstOrDefault(x => x.MAIL == p.MAIL);
+            if (uye == null)
+            {
+                db.TBL_UYE.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                Response.Write("<script>alert('Bu mail adresi zaten kayıtlı');</script>");
+                ViewBag.msg = "Bu mail adresine ait hesap bulunmaktadır";
+
+                return View();
+            }
 
         }
     }

@@ -1,0 +1,297 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            #ornek {
+                width: 100%;
+                padding: 50px 0;
+                text-align: center;
+                margin-top: 20px;
+            }
+        </style>
+
+
+    <title>Taha Bilgisayar</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="~/tahapc.jpeg" alt="" width="72" height="72">
+            <h2>SİPARİŞ OLUŞTUR</h2>
+        </div>
+
+        @using (Html.BeginForm("SiparisOlustur", "Siprais", FormMethod.Post))
+        {
+
+    <form method="post">
+       
+
+
+
+                <div class="row">
+                    <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Sepet</span>
+                            <span class="badge badge-secondary badge-pill">3</span>
+                        </h4>
+
+                        <ul class="list-group mb-3">
+
+                            @foreach (var x in Model.deger9)
+                            {
+
+
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">@x.TBL_URUN.AD</h6>
+                                        <small class="text-muted">@x.ADET</small>
+                                    </div>
+                                    <span class="text-muted">@x.TBL_URUN.FIYAT*@x.ADET</span>
+                                </li>
+
+                            }
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total</span>
+                                <strong>@ViewBag.toplam</strong>
+                            </li>
+                        </ul>
+
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Sipariş Bilgileri</h4>
+                        @*<form class="needs-validation" novalidate>*@
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">Ad</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value="@ViewBag.dgr11" readonly="true" required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName">Soyad</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="" value="@ViewBag.dgr12" readonly="true" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        @foreach (var x in Model.deger7)
+                        {
+
+                            <div class="mb-3" style="background-color:whitesmoke ; border:3px solid #808080;">
+
+
+                                <div class="form-check">
+                                    <input class="checkbox" type="radio" name="ADRES" value="@x.ID">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    </label>
+                                    <br />
+                                </div>
+
+
+                                <br />
+
+                                <h4>@x.IL</h4>
+                                <h3 id="address">@x.ILCE</h3>
+                                <h6 id="address">@x.ADRES</h6>
+
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+                        }
+
+
+
+
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" onclick="gizleGoster()" type="radio" value="1" class="btn btn-info" checked required>
+                                <label class="custom-control-label" for="credit">Kredi Kartı</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" onclick="Iban()" value="2" type="radio" class="btn btn-info" required>
+                                <label class="custom-control-label" for="debit">Havale</label>
+                            </div>
+
+                            <div id="ornek">
+
+                                <hr class="mb-4">
+
+                                <h4 class="mb-3">Payment</h4>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cc-name">Name on card</label>
+                                        <input type="text" class="form-control" id="cc-name" placeholder="">
+                                        <small class="text-muted">Full name as displayed on card</small>
+                                        <div class="invalid-feedback">
+                                            Name on card is required
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cc-number">Credit card number</label>
+                                        <input type="text" class="form-control" id="cc-number" placeholder="">
+                                        <div class="invalid-feedback">
+                                            Credit card number is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="cc-expiration">Expiration</label>
+                                        <input type="text" class="form-control" id="cc-expiration" placeholder="">
+                                        <div class="invalid-feedback">
+                                            Expiration date required
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="cc-expiration">CVV</label>
+                                        <input type="text" class="form-control" id="cc-cvv" placeholder="">
+                                        <div class="invalid-feedback">
+                                            Security code required
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-4">
+                            </div>
+                        </div>
+
+                        <div id="Iban">
+                            Iban adresimiz=TR000000000000000
+
+                        </div>
+
+
+
+                        <input type="hidden" name="UYE" value="@ViewBag.dgr14" />
+                        <input type="hidden" name="TOPLAMTUTAR" value="@ViewBag.toplam" />
+
+                        <input type="hidden" name="TARIH" value="@DateTime.Now.ToShortDateString()" />
+                        @using (Html.BeginForm("SiparisKalemOlustur", "Siprais", FormMethod.Post))
+                        {
+                        <button class="btn btn-danger" type="submit">Sipariş Oluştur</button>
+                        }
+            </form>
+
+            @*</form>*@
+        }
+  
+
+        </div>
+
+        </div>
+
+
+        @*<footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2017-2018 Company Name</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>*@
+   
+    </div>
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+    <script>
+        function gizleGoster() {
+            var x = document.getElementById("ornek");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function Iban() {
+            var y = document.getElementById("Iban");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+      
+    </script>
+
+
+
+</body>
+</html>

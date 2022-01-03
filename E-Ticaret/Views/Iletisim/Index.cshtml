@@ -1,0 +1,76 @@
+﻿@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+     
+   input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        @using (Html.BeginForm("Index","Iletisim", FormMethod.Post))
+        {
+        <form>
+
+
+            <label for="lname">AD</label>
+            <input type="text" id="lname" name="AD" >
+
+
+            <label for="lname">SOYAD</label>
+            <input type="text" id="lname" name="SOYAD">
+
+            <label for="country">MAIL</label>
+            <input type="text" id="lname" name="MAIL">
+
+            <label for="country">KONU</label>
+            <input type="text" id="lname" name="KONU">
+
+
+            <label for="subject">MESAJ</label>
+            <textarea id="subject" name="MESAJ" placeholder="Write something.." style="height:200px"></textarea>
+
+            <input type="hidden" name="TARIH" value="@DateTime.Now.ToShortDateString()" readonly="true" />
+            <input type="submit" value="GÖNDER">
+        </form>
+        }
+    </div>
+
+</body>
+</html>
+
+
+<div><br /><br /></div>
+<div><br /><br /></div>

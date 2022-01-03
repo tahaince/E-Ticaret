@@ -25,9 +25,11 @@ namespace E_Ticaret.Models.Entity
         public Nullable<System.DateTime> TARIH { get; set; }
         public Nullable<int> TOPLAMTUTAR { get; set; }
         public Nullable<int> DURUM { get; set; }
+        public Nullable<int> ADRES { get; set; }
     
         public virtual TBL_DURUM TBL_DURUM { get; set; }
         public virtual TBL_UYE TBL_UYE { get; set; }
+        public virtual TBL_ADRES TBL_ADRES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBL_SIPARISKALEMI> TBL_SIPARISKALEMI { get; set; }
     }

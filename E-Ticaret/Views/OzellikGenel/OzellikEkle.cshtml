@@ -1,0 +1,19 @@
+﻿@model E_Ticaret.Models.Entity.TBL_OZELLIK
+@{
+    ViewBag.Title = "OzellikEkle";
+    Layout = "~/Views/Shared/PersonelLayout.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("OzellikEkle", "OzellikGenel", FormMethod.Post))
+{
+
+    <label>Ozeliik Ad</label>
+    @Html.TextBoxFor(x =>x.OZELLIKAD, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">EKLE</button>
+
+
+}
+
+

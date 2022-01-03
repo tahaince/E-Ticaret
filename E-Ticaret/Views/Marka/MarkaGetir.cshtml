@@ -6,15 +6,16 @@
 
 
 
+<br />
 
 @using (Html.BeginForm("MarkaGuncelle", "Marka", FormMethod.Post))
 {
     <form class="form-group">
 
-        form class="form-group">
+      
         <div>
             <label>Marka ID</label>
-            @Html.TextBoxFor(x => x.ID, new { @class = "form-control", readyonly = true })
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control", Readonly = "true" })
         </div>
         <br />
 

@@ -104,14 +104,21 @@
                 <br />
 
 
+                @using (Html.BeginForm("SepeteEkle", "Urun", FormMethod.Post))
+                {
+            <div class="d-flex">
+                <input class="form-control text-center me-3" id="inputQuantity" type="num" name="ADET" value="1" style="max-width: 3rem" />
+                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Sepete Ekle
+                </button>
+                <input class="form-control" type="hidden" name="URUN" value="@ViewBag.dgr7" />
+                <input class="form-control" name="UYE" type="hidden" value="@ViewBag.dgr14" />
+                <input class="form-control" name="FIYAT" type="hidden" value="@ViewBag.dgr4" />
 
-                <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Sepete Ekle
-                    </button>
-                </div>
+
+            </div>
+                }
                 <br />
                 <p class="lead">@ViewBag.dgr3</p>
             </div>
@@ -277,7 +284,7 @@
             @foreach (var y in Model.deger3)
             {
         <div id="div1">
-            <h3 style="color:black">@y.TBL_UYE.AD</h3>
+            <h3 style="color:black">@y.TBL_UYE.AD  @y.TBL_UYE.SOYAD</h3>
 
             @for (int i = 0; i < y.rate; i++)
             {
