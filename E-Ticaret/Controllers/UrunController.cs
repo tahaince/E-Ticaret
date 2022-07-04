@@ -128,6 +128,7 @@ namespace E_Ticaret.Controllers
 
 
             var kontrol = db.TBL_SEPET.Where(x => x.URUN == p.URUN && x.UYE == p.UYE).FirstOrDefault();
+          
 
             if (kontrol == null)
             {

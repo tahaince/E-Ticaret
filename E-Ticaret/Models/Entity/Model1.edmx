@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EticaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ODEME">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ODEMEYONTEMI" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TBL_ADMIN">
           <Key>
             <PropertyRef Name="ID" />
@@ -20,7 +27,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UYEID" Type="int" />
           <Property Name="BASLIK" Type="varchar" MaxLength="50" />
           <Property Name="IL" Type="varchar" MaxLength="50" />
@@ -115,6 +122,8 @@
           <Property Name="TOPLAMTUTAR" Type="int" />
           <Property Name="DURUM" Type="int" />
           <Property Name="ADRES" Type="int" />
+          <Property Name="DURUMM" Type="bit" />
+          <Property Name="SIPARISONAY" Type="bit" />
         </EntityType>
         <EntityType Name="TBL_SIPARISKALEMI">
           <Key>
@@ -125,6 +134,13 @@
           <Property Name="URUN" Type="int" />
           <Property Name="ADET" Type="int" />
           <Property Name="TUTAR" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_TODO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TODO" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TBL_URUN">
           <Key>
@@ -232,6 +248,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TBL_SIPARIS_ODEME">
+          <End Role="ODEME" Type="Self.ODEME" Multiplicity="0..1" />
+          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ODEME">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="DURUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TBL_SIPARIS_TBL_ADRES">
           <End Role="TBL_ADRES" Type="Self.TBL_ADRES" Multiplicity="0..1" />
           <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
@@ -241,18 +269,6 @@
             </Principal>
             <Dependent Role="TBL_SIPARIS">
               <PropertyRef Name="ADRES" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TBL_SIPARIS_TBL_DURUM">
-          <End Role="TBL_DURUM" Type="Self.TBL_DURUM" Multiplicity="0..1" />
-          <End Role="TBL_SIPARIS" Type="Self.TBL_SIPARIS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_DURUM">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TBL_SIPARIS">
-              <PropertyRef Name="DURUM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -365,6 +381,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EticaretModelStoreContainer">
+          <EntitySet Name="ODEME" EntityType="Self.ODEME" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_ADRES" EntityType="Self.TBL_ADRES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DESTEK" EntityType="Self.TBL_DESTEK" Schema="dbo" store:Type="Tables" />
@@ -378,6 +395,7 @@
           <EntitySet Name="TBL_SEPET" EntityType="Self.TBL_SEPET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_SIPARIS" EntityType="Self.TBL_SIPARIS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_SIPARISKALEMI" EntityType="Self.TBL_SIPARISKALEMI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_TODO" EntityType="Self.TBL_TODO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_URUN" EntityType="Self.TBL_URUN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_URUNOZELLIK" EntityType="Self.TBL_URUNOZELLIK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_UYE" EntityType="Self.TBL_UYE" Schema="dbo" store:Type="Tables" />
@@ -402,12 +420,12 @@
             <End Role="TBL_UYE" EntitySet="TBL_UYE" />
             <End Role="TBL_SEPET" EntitySet="TBL_SEPET" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBL_SIPARIS_TBL_ADRES" Association="Self.FK_TBL_SIPARIS_TBL_ADRES">
-            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
+          <AssociationSet Name="FK_TBL_SIPARIS_ODEME" Association="Self.FK_TBL_SIPARIS_ODEME">
+            <End Role="ODEME" EntitySet="ODEME" />
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBL_SIPARIS_TBL_DURUM" Association="Self.FK_TBL_SIPARIS_TBL_DURUM">
-            <End Role="TBL_DURUM" EntitySet="TBL_DURUM" />
+          <AssociationSet Name="FK_TBL_SIPARIS_TBL_ADRES" Association="Self.FK_TBL_SIPARIS_TBL_ADRES">
+            <End Role="TBL_ADRES" EntitySet="TBL_ADRES" />
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
           </AssociationSet>
           <AssociationSet Name="FK_TBL_SIPARIS_TBL_UYE" Association="Self.FK_TBL_SIPARIS_TBL_UYE">
@@ -533,6 +551,9 @@
           <Property Name="ADRES" Type="Int32" />
           <NavigationProperty Name="TBL_ADRES" Relationship="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES" FromRole="TBL_SIPARIS" ToRole="TBL_ADRES" />
           <NavigationProperty Name="TBL_SIPARISKALEMI" Relationship="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS" FromRole="TBL_SIPARIS" ToRole="TBL_SIPARISKALEMI" />
+          <Property Name="DURUMM" Type="Boolean" />
+          <NavigationProperty Name="ODEME" Relationship="EticaretModel.FK_TBL_SIPARIS_ODEME" FromRole="TBL_SIPARIS" ToRole="ODEME" />
+          <Property Name="SIPARISONAY" Type="Boolean" />
         </EntityType>
         <EntityType Name="TBL_SIPARISKALEMI">
           <Key>
@@ -751,6 +772,12 @@
             <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
             <End Role="TBL_SIPARISKALEMI" EntitySet="TBL_SIPARISKALEMI" />
           </AssociationSet>
+          <EntitySet Name="ODEME" EntityType="EticaretModel.ODEME" />
+          <AssociationSet Name="FK_TBL_SIPARIS_ODEME" Association="EticaretModel.FK_TBL_SIPARIS_ODEME">
+            <End Role="ODEME" EntitySet="ODEME" />
+            <End Role="TBL_SIPARIS" EntitySet="TBL_SIPARIS" />
+          </AssociationSet>
+          <EntitySet Name="TBL_TODO" EntityType="EticaretModel.TBL_TODO" />
         </EntityContainer>
         <Association Name="FK_TBL_YORUM_TBL_UYE">
           <End Type="EticaretModel.TBL_UYE" Role="TBL_UYE" Multiplicity="0..1" />
@@ -925,6 +952,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ODEME">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ODEMEYONTEMI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_SIPARIS" Relationship="EticaretModel.FK_TBL_SIPARIS_ODEME" FromRole="ODEME" ToRole="TBL_SIPARIS" />
+        </EntityType>
+        <Association Name="FK_TBL_SIPARIS_ODEME">
+          <End Type="EticaretModel.ODEME" Role="ODEME" Multiplicity="0..1" />
+          <End Type="EticaretModel.TBL_SIPARIS" Role="TBL_SIPARIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ODEME">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_SIPARIS">
+              <PropertyRef Name="DURUM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_TODO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TODO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1004,6 +1058,8 @@
           <EntitySetMapping Name="TBL_SIPARIS">
             <EntityTypeMapping TypeName="EticaretModel.TBL_SIPARIS">
               <MappingFragment StoreEntitySet="TBL_SIPARIS">
+                <ScalarProperty Name="SIPARISONAY" ColumnName="SIPARISONAY" />
+                <ScalarProperty Name="DURUMM" ColumnName="DURUMM" />
                 <ScalarProperty Name="ADRES" ColumnName="ADRES" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UYE" ColumnName="UYE" />
@@ -1111,6 +1167,22 @@
                 <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODEME">
+            <EntityTypeMapping TypeName="EticaretModel.ODEME">
+              <MappingFragment StoreEntitySet="ODEME">
+                <ScalarProperty Name="ODEMEYONTEMI" ColumnName="ODEMEYONTEMI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_TODO">
+            <EntityTypeMapping TypeName="EticaretModel.TBL_TODO">
+              <MappingFragment StoreEntitySet="TBL_TODO">
+                <ScalarProperty Name="TODO" ColumnName="TODO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

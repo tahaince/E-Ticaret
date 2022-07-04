@@ -25,6 +25,8 @@ namespace E_Ticaret.Models.Siniflar
 
         public IEnumerable<TBL_SIPARIS> deger11 { get; set; }
         public IEnumerable<TBL_SIPARISKALEMI> deger12 { get; set; }
+        public IEnumerable<TBL_TODO> deger13 { get; set; }
+
 
 
 

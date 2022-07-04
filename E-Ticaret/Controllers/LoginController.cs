@@ -47,62 +47,7 @@ namespace E_Ticaret.Controllers
         }
 
 
-        [HttpPost]
-
-        public ActionResult SifremiUnuttum(Email m)
-        {
-            var uye = db.TBL_UYE.FirstOrDefault(x => x.MAIL == m.mail);
-            if(uye!=null)
-            {
-                Guid rnd = Guid.NewGuid();
-                uye.SIFRE = rnd.ToString().Substring(1,6);
-                db.SaveChanges();
-                try
-                {
-                    SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Burası aynı kalacak
-                    client.Credentials = new NetworkCredential("TahaBilgisayar2021@gmail.com", "34TH0513");
-                    client.EnableSsl = true;
-
-                    MailMessage msj = new MailMessage(); //Yeni bir MailMesajı oluşturuyoruz
-                    msj.From = new MailAddress(m.mail); //iletişim kısmında girilecek mail buaraya gelecektir
-                    msj.To.Add("TahaBilgisayar2021@gmail.com"); //Buraya kendi mail adresimizi yazıyoruz
-                                                                //  msj.Subject = m.konu + "" + m.mail; //Buraya iletişim sayfasında gelecek konu ve mail adresini mail içeriğine yazacaktır
-                    msj.Body = m.mail; //Mail içeriği burada aktarılacakır
-                    client.Send(msj); //Clien sent kısmında gönderme işlemi gerçeklecektir.
-
-
-                    //Bu kısımdan itibaren sizden kullanıcıya gidecek mail bilgisidir
-                    //
-                    MailMessage msj1 = new MailMessage();
-                    msj1.From = new MailAddress("TahaBilgisayar2021@gmail.com", "Taha Teknoloji");
-                    msj1.To.Add(m.mail); //Buraua iletişim sayfasında gelecek mail adresi gelecktir.
-                    msj1.Subject = "Şifre Yenileme Talebi Hakkında";
-                    msj1.Body = uye.SIFRE;
-                    client.Send(msj1);
-                    ViewBag.Succes = "Yeni şifreniz mail adresinize gönderildi"; //Bu kısımlarda ise kullanıcıya bilgi vermek amacı ile olur
-                    return View();
-                }
-                catch (Exception)
-                {
-                    ViewBag.Error = "Mail Gönderilemedi"; //Bu kısımlarda ise kullanıcıya bilgi vermek amacı ile olur
-                    return View();
-                }
-
-
-
-            }
-            else {
-                ViewBag.Error = "Mesaj Gönderilken hata olıuştu"; //Bu kısımlarda ise kullanıcıya bilgi vermek amacı ile olur
-
-                Response.Write("<script>alert('Kullanıcı Adı veya Şifre hatalı');</script>");
-
-                return View();
-
-            }
-
-
-        }
-
+     
 
 
         [HttpGet]

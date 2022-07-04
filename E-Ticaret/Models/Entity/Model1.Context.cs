@@ -42,5 +42,7 @@ namespace E_Ticaret.Models.Entity
         public virtual DbSet<TBL_FAVORI> TBL_FAVORI { get; set; }
         public virtual DbSet<TBL_ADRES> TBL_ADRES { get; set; }
         public virtual DbSet<TBL_ADMIN> TBL_ADMIN { get; set; }
+        public virtual DbSet<ODEME> ODEME { get; set; }
+        public virtual DbSet<TBL_TODO> TBL_TODO { get; set; }
     }
 }

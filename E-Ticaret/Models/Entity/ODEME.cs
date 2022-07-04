@@ -12,28 +12,18 @@ namespace E_Ticaret.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBL_SIPARIS
+    public partial class ODEME
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBL_SIPARIS()
+        public ODEME()
         {
-            this.TBL_SIPARISKALEMI = new HashSet<TBL_SIPARISKALEMI>();
+            this.TBL_SIPARIS = new HashSet<TBL_SIPARIS>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> UYE { get; set; }
-        public Nullable<System.DateTime> TARIH { get; set; }
-        public Nullable<int> TOPLAMTUTAR { get; set; }
-        public Nullable<int> DURUM { get; set; }
-        public Nullable<int> ADRES { get; set; }
-        public Nullable<bool> DURUMM { get; set; }
-        public Nullable<bool> SIPARISONAY { get; set; }
+        public string ODEMEYONTEMI { get; set; }
     
-        public virtual TBL_DURUM TBL_DURUM { get; set; }
-        public virtual TBL_UYE TBL_UYE { get; set; }
-        public virtual TBL_ADRES TBL_ADRES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBL_SIPARISKALEMI> TBL_SIPARISKALEMI { get; set; }
-        public virtual ODEME ODEME { get; set; }
+        public virtual ICollection<TBL_SIPARIS> TBL_SIPARIS { get; set; }
     }
 }

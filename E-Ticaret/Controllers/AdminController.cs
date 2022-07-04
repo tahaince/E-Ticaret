@@ -25,20 +25,6 @@ namespace E_Ticaret.Controllers
         public ActionResult Panel()
         {
 
-            //List<Doviz> Curlist = null;
-
-            //WebClient client = new WebClient();
-            //var json = client.DownloadString("https://www.doviz.com/api/v1/currencies/all/latest");
-            //Curlist = JsonConvert.DeserializeObject<List<Doviz>>(json);
-            //return View(Curlist.Take(3).ToList());
-
-
-            //if (Curlist == null)
-            //{
-            //    return null;
-
-            //}
-
             XmlDocument xmlVerisi = new XmlDocument();
             xmlVerisi.Load("http://www.tcmb.gov.tr/kurlar/today.xml");
             decimal dolarsatis = Convert.ToDecimal(xmlVerisi.SelectSingleNode(string.Format("Tarih_Date/Currency[@Kod='{0}']/ForexSelling", "USD")).InnerText.Replace('.', ','));
@@ -56,11 +42,19 @@ namespace E_Ticaret.Controllers
             ViewBag.stok = stok;
             var uye = db.TBL_UYE.Count();
             ViewBag.uye = uye;
+            var kazanc = db.TBL_SIPARIS.Sum(x => x.TOPLAMTUTAR);
+            var ciro = Convert.ToDecimal(kazanc);
+            ViewBag.kazanc = String.Format("{0:C}", kazanc);
+
+            var siparis = db.TBL_SIPARIS.Count();
+            ViewBag.siparis = siparis;
 
 
             Class1 cs = new Class1();
 
             cs.deger10 = db.TBL_DESTEK.ToList();
+            cs.deger13=db.TBL_TODO.ToList();
+            cs.deger11 = db.TBL_SIPARIS.Where(x=>x.SIPARISONAY==false).ToList();
 
             if (Session["ADMIN"] != null)
             {
@@ -69,15 +63,6 @@ namespace E_Ticaret.Controllers
 
             }
 
-
-            //Session["MAIL"] = admin.MAIL.ToString();
-            //var ad = admin.AD;
-            //var soyad = admin.SOYAD;
-            //var foto = admin.FOTOGRAF;
-            //ViewBag.ad = ad;
-            //ViewBag.soyad = soyad;
-            //ViewBag.foto = foto;
-            //return RedirectToAction("Panel", "ADMIN");
 
 
 
@@ -146,6 +131,32 @@ namespace E_Ticaret.Controllers
             var mesaj = db.TBL_DESTEK.ToList();
             return View(mesaj);
 
+
+        }
+
+        public  ActionResult  SiparisOnay(int id)
+        {
+            var siparis = db.TBL_SIPARIS.Find(id);
+            siparis.SIPARISONAY = true;
+            db.SaveChanges();
+            return RedirectToAction("Panel");
+
+
+        }
+        public ActionResult TODOSIL(int id)
+        {
+            var todo = db.TBL_TODO.Find(id);
+            db.TBL_TODO.Remove(todo);
+            db.SaveChanges();
+            return RedirectToAction("Panel");
+
+
+        }
+        public ActionResult TODOEKLE(TBL_TODO p)
+        {
+            db.TBL_TODO.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Panel");
 
         }
 

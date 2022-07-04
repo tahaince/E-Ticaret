@@ -86,8 +86,12 @@ namespace E_Ticaret.Controllers
         }
 
 
+   
+
+
+
         [HttpPost]
-        public ActionResult SiparisOlustur(TBL_SIPARIS p)
+        public ActionResult SiparisOlustur(TBL_SIPARIS p,TBL_SIPARISKALEMI y)
         {
 
             var uyemail = (string)Session["Mail"];
@@ -100,8 +104,20 @@ namespace E_Ticaret.Controllers
             ViewBag.dgr12 = deger12;
             ViewBag.dgr13 = deger13;
             ViewBag.dgr14 = deger14;
+            var siparis = db.TBL_SIPARIS.ToList();
+            
+            if(p.SIPARISONAY==true)
+            {
+                p.DURUMM = true;
 
+            }
+            else
+            {
+                p.DURUMM = false;
+            }
             db.TBL_SIPARIS.Add(p);
+            y.SIPARISID = p.ID;
+            SiparisKalemOlustur(y);
             db.SaveChanges();
             return RedirectToAction("Index", "Urunler");
         }
@@ -109,27 +125,33 @@ namespace E_Ticaret.Controllers
         [HttpPost]
         public ActionResult SiparisKalemOlustur(TBL_SIPARISKALEMI p)
         {
-            var uyemail = (string)Session["Mail"];
-            var degerler = db.TBL_UYE.FirstOrDefault(z => z.MAIL == uyemail);
-            var deger11 = degerler.AD;
-            var deger12 = degerler.SOYAD;
-            var deger13 = degerler.MAIL;
-            var deger14 = degerler.ID;
-            var urun = db.TBL_SEPET.Where(x => x.UYE == deger14).ToList();
 
-            foreach (var x in urun)
-            {
+           
+                var uyemail = (string)Session["Mail"];
+                var degerler = db.TBL_UYE.FirstOrDefault(z => z.MAIL == uyemail);
+                var deger11 = degerler.AD;
+                var deger12 = degerler.SOYAD;
+                var deger13 = degerler.MAIL;
+                var deger14 = degerler.ID;
+                var urun = db.TBL_SEPET.Where(x => x.UYE == deger14).ToList();
 
-                p.URUN = x.URUN;
-                p.ADET = x.ADET;
-                p.TUTAR = x.ADET * x.TBL_URUN.FIYAT;
 
-                db.TBL_SIPARISKALEMI.Add(p);
-                db.SaveChanges();
 
-            }
+                foreach (var x in urun)
+                {
 
-            return RedirectToAction("Index", "Urunler");
+                    p.URUN = x.URUN;
+                    p.ADET = x.ADET;
+                    p.TUTAR = x.ADET * x.TBL_URUN.FIYAT;
+
+
+                    db.TBL_SIPARISKALEMI.Add(p);
+                    db.SaveChanges();
+
+                }
+
+                return RedirectToAction("Index", "Siprais");
+
         }
 
         public ActionResult SepetSil(int id)
@@ -142,7 +164,7 @@ namespace E_Ticaret.Controllers
             var deger14 = degerler.ID;
 
 
-            var urunler = db.TBL_SEPET.Where(x=>x.TBL_UYE.ID==deger14).FirstOrDefault();
+            var urunler = db.TBL_SEPET.Find(id);
             db.TBL_SEPET.Remove(urunler);
 
             return View();
@@ -158,11 +180,25 @@ namespace E_Ticaret.Controllers
             var deger13 = degerler.MAIL;
             var deger14 = degerler.ID;
 
+            getdata();
+
             Class1 cs = new Class1();
 
             cs.deger5 = db.TBL_KATEGORI.ToList();
             cs.deger11 = db.TBL_SIPARIS.Where(x => x.UYE == deger14).ToList();
             return View(cs);
         }
-    }
+        public ActionResult SiparisKalemGorutule(int id)
+
+        {
+            getdata();
+            Class1 cs = new Class1();
+            cs.deger12 = db.TBL_SIPARISKALEMI.Where(x=>x.SIPARISID==id).ToList();
+            cs.deger5 = db.TBL_KATEGORI.ToList();
+            return View(cs);
+        }
+
+
+
+            }
 }

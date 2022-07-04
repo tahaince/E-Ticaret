@@ -1,0 +1,44 @@
+﻿
+@using E_Ticaret.Models.Entity
+@model E_Ticaret.Models.Siniflar.Class1
+
+@{
+    ViewBag.Title = "SiparisKalemGorutule";
+    Layout = "~/Views/USTMENU/Index.cshtml";
+}
+
+
+
+<table class="table table-responsive">
+
+    <tr class="bg-dark" style="color:whitesmoke">
+        <td></td>
+        <td>ÜRÜN</td>
+        <td>FİYAT</td>
+        <td>ADET</td>
+        <td>TUTAR</td>
+        
+
+
+    </tr>
+    @foreach (var x in Model.deger12)
+    {
+<tr>
+    <td><img src="@x.TBL_URUN.FOTOGRAF" style="width:150px;height:150px" /></td>
+    <td>@x.TBL_URUN.TBL_MARKA.AD  @x.TBL_URUN.AD</td>
+    <td>@x.TBL_URUN.FIYAT</td>
+    <td>@x.ADET</td>
+    <td>@x.TUTAR</td>
+
+
+
+
+</tr>
+    }
+
+
+</table>
+<br />
+<br />
+<br />
+

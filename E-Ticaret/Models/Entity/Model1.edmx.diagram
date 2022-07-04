@@ -38,6 +38,9 @@
         <EntityTypeShape EntityType="EticaretModel.TBL_ADMIN" Width="1.5" PointX="12.375" PointY="0.75" />
         <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_TBL_ADRES" />
         <AssociationConnector Association="EticaretModel.FK_TBL_SIPARISKALEMI_TBL_SIPARIS" />
+        <EntityTypeShape EntityType="EticaretModel.ODEME" Width="1.5" PointX="12.375" PointY="8.875" />
+        <AssociationConnector Association="EticaretModel.FK_TBL_SIPARIS_ODEME" />
+        <EntityTypeShape EntityType="EticaretModel.TBL_TODO" Width="1.5" PointX="10.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

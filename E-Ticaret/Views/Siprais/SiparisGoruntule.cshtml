@@ -10,50 +10,77 @@
 <table class="table table-responsive">
 
     <tr class="bg-dark" style="color:whitesmoke">
+        <td>SİPARİŞ ID</td>
         <td>AD SOYAD</td>
         <td>TARIH</td>
         <td>ADRES</td>
-        <td>DURUM</td>
+        <td>ÖDEME</td>
         <td>TOPLAM TUTAR</td>
+        <td>ONAY DURUMU</td>
         <td>Detay</td>
 
 
     </tr>
     @foreach (var x in Model.deger11)
     {
-        <tr>
-            <td>
-                <p>@x.TBL_UYE.AD   @x.TBL_UYE.SOYAD</p>
-            </td>
+<tr>
+    <td>@x.ID</td>
 
-            <td>
-                @x.TARIH
-            </td>
-            <td>
+    <td>
+        <p>@x.TBL_UYE.AD   @x.TBL_UYE.SOYAD</p>
+    </td>
 
-                @x.TBL_ADRES.ADRES
-            </td>
-            <td>
-                @x.DURUM
-            </td>
+    <td>
+        @x.TARIH
+    </td>
+    <td>
 
-            <td>
-                @x.TOPLAMTUTAR
+        @x.TBL_ADRES.ADRES
+    </td>
+    @if (x.DURUMM == true)
+    {
+        <td>
+            Kredi Kartı
+        </td>
+    }
 
-            </td>
+    else
+    {
+        <td>
+            Havale
+        </td>
+    }
+
+    <td>
+        @x.TOPLAMTUTAR
+
+    </td>
+    @if (x.SIPARISONAY == true)
+    {
+        <td>
+            ONAYLANDI
+
+        </td>
+    }
+
+    else
+    {
+        <td>
+            ONAY BEKLENİYOR
+        </td>
+    }
+
+    <td>
+
+        <a href="/Siprais/SiparisKalemGorutule/@x.ID">
+            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                DETAY GÖR
+            </button>
+        </a>
+    </td>
 
 
-            <td>
-
-                <a href="/Siprais/SiparisKalemGoruntule">
-                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                        DETAY GÖR
-                    </button>
-                </a>
-            </td>
-
-
-        </tr>
+</tr>
     }
 
 
