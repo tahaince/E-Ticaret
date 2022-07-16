@@ -60,12 +60,12 @@ namespace E_Ticaret.Controllers
                 try
                 {
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Burası aynı kalacak
-                    client.Credentials = new NetworkCredential("TahaBilgisayar2021@gmail.com", "34TH0513");
+                    client.Credentials = new NetworkCredential("@gmail.com", "");
                     client.EnableSsl = true;
 
                     MailMessage msj = new MailMessage(); //Yeni bir MailMesajı oluşturuyoruz
                     msj.From = new MailAddress(m.mail); //iletişim kısmında girilecek mail buaraya gelecektir
-                    msj.To.Add("TahaBilgisayar2021@gmail.com"); //Buraya kendi mail adresimizi yazıyoruz
+                    msj.To.Add("@.com"); //Buraya kendi mail adresimizi yazıyoruz
                                                                 //  msj.Subject = m.konu + "" + m.mail; //Buraya iletişim sayfasında gelecek konu ve mail adresini mail içeriğine yazacaktır
                     msj.Body = m.mail; //Mail içeriği burada aktarılacakır
                     client.Send(msj); //Clien sent kısmında gönderme işlemi gerçeklecektir.
@@ -74,7 +74,7 @@ namespace E_Ticaret.Controllers
                     //Bu kısımdan itibaren sizden kullanıcıya gidecek mail bilgisidir
                     //
                     MailMessage msj1 = new MailMessage();
-                    msj1.From = new MailAddress("TahaBilgisayar2021@gmail.com", "Taha Teknoloji");
+                    msj1.From = new MailAddress("@gmail.com", "");
                     msj1.To.Add(m.mail); //Buraua iletişim sayfasında gelecek mail adresi gelecktir.
                     msj1.Subject = "Şifre Yenileme Talebi Hakkında";
                     msj1.Body = uye.SIFRE;
